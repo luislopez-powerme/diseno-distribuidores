@@ -1,0 +1,194 @@
+/* =====================================================================
+   Variante "tienda" (index-tienda.html): capa sobre styles.css con el
+   lenguaje de e-commerce clásico (ShopNova / NovaTrend / TechVerse):
+   buscador con categorías, sidebar de
+   categorías junto al hero, franja de 4 servicios, categorías en
+   círculos, cuadrícula de productos con columna de ofertas y
+   formas de pago en el footer. No toca index.html.
+   ===================================================================== */
+
+/* Buscador con selector de categoría */
+.tienda .search { padding-right: 6px; }
+.search-cat { flex: none; height: 30px; margin-left: 6px; padding: 0 28px 0 12px; border: 0; border-left: 1px solid var(--line-strong); border-radius: 0; background: transparent url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233C444C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>") no-repeat right 8px center / 14px; font: inherit; font-size: 13px; font-weight: 500; color: var(--ink-soft); appearance: none; -webkit-appearance: none; cursor: pointer; }
+.search-cat:focus { outline: 0; color: var(--ink); }
+.tienda .search kbd { display: none; }
+
+/* Hero con sidebar de categorías */
+.tienda .hero { grid-template-columns: 236px minmax(0, 1fr); gap: 16px; }
+.cat-side { background: #fff; border: 1px solid var(--line); border-radius: var(--r-lg); overflow: hidden; display: flex; flex-direction: column; min-height: 0; }
+.cat-side-head { display: flex; align-items: center; gap: 8px; padding: 10px 14px; font-size: 13.5px; font-weight: 600; border-bottom: 1px solid var(--line); background: var(--paper-2); }
+.cat-side-head .icon { width: 16px; height: 16px; stroke-width: 2.2; }
+/* Bloques por marca (24 sep): logo en negro + descriptor en la tipografía de etiquetas */
+/* Bloques por marca (24 sep): solo el nombre en texto (Luis: los logos se veían aplastados); ATESS en su rojo #B91012 */
+.cat-side-brand { display: flex; align-items: center; gap: 8px; padding: 7px 14px 1px; font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: -.005em; color: var(--ink); line-height: 1.25; }  /* Commuters SemiBold como el encabezado del panel; la ABChanel se veía delgada y estirada a este tamaño */
+.cat-side-brand--atess { color: #B91012; border-top: 1px solid var(--line); margin-top: 2px; padding-top: 7px; }
+.cat-side ul { list-style: none; margin: 0; padding: 2px 0; flex: 1; overflow: auto; }
+.cat-side ul.cat-side-list--atess { flex: none; padding-bottom: 4px; }
+.cat-side li a { display: flex; align-items: center; gap: 10px; padding: 4px 12px 4px 14px; font-size: 13px; color: var(--ink-soft); transition: background .15s, color .15s; }
+.cat-side li a img { width: 21px; height: 21px; object-fit: contain; flex: none; }
+.cat-side li a span { flex: 1; }
+.cat-side li a .icon { width: 14px; height: 14px; color: var(--muted-2); transform: rotate(-90deg); }
+.cat-side li a:hover { background: var(--paper-2); color: var(--ink); }
+.cat-side li a:hover .icon { color: var(--ink); }
+
+/* Banner tipo Veluno: foto oficial a sangre, título grande y ligero abajo a la izquierda con botón blanco,
+   tarjetas de producto y contador 01 — 03 con flechas abajo a la derecha. Altura = sidebar (512 px). */
+.tienda .banner { aspect-ratio: auto; height: 500px; box-shadow: none; }  /* 24 sep: 500 px fijos = altura del panel con los dos bloques (EcoFlow + ATESS); en ≤1200 el panel se oculta y el banner vuelve a 21:9 */
+.tienda .slide { display: block; padding: 0; }
+.tienda .slide::before { background: linear-gradient(90deg, rgba(12, 12, 12, .6) 0%, rgba(12, 12, 12, .22) 34%, rgba(12, 12, 12, 0) 58%), linear-gradient(0deg, rgba(12, 12, 12, .7) 0%, rgba(12, 12, 12, .22) 42%, transparent 66%); }
+.tienda .slide::after { display: none; }
+.slide-bg { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.tienda .slide--1 .slide-bg { object-position: 62% 50%; }
+.tienda .slide--2 .slide-bg { object-position: 70% 50%; }
+.tienda .slide--3 .slide-bg { object-position: 60% 50%; }
+.tienda .slide.is-active .slide-bg { animation: hero-zoom 7s var(--ease-out) both; }
+@keyframes hero-zoom { from { transform: scale(1.06); } to { transform: none; } }
+.tienda .slide-copy { position: absolute; left: 40px; bottom: 32px; max-width: 520px; gap: 10px; }
+.tienda .slide-brand { height: 28px; gap: 10px; padding: 0 12px 0 11px; border-radius: 999px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .22); color: #fff; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 1px 0 rgba(255, 255, 255, .08) inset; margin-bottom: 2px; }
+.tienda .slide-brand img { height: 11px; opacity: .95; }
+.tienda .slide-brand span { font-size: 11px; font-weight: 300; letter-spacing: .16em; padding-left: 10px; border-left: 1px solid rgba(255, 255, 255, .3); color: #fff; white-space: nowrap; }
+.tienda .slide-title { font-size: 42px; font-weight: 300; line-height: 1.06; letter-spacing: -.01em; text-shadow: 0 2px 20px rgba(0, 0, 0, .35); }
+.tienda .slide-text { display: block; font-size: 13.5px; line-height: 1.5; color: rgba(255, 255, 255, .8); max-width: 46ch; }
+.tienda .slide-cta { height: 38px; gap: 8px; padding: 0 16px; border-radius: 999px; background: #fff; color: var(--ink); font-size: 13.5px; font-weight: 600; margin-top: 8px; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tienda .slide-cta:hover { background: #E9EDF1; }
+.tienda .slide-cta .icon { width: 15px; height: 15px; }
+/* Contador 01 — 03 y flechas (fantasma + blanca), abajo a la derecha */
+.hero-nav { position: absolute; right: 36px; bottom: 32px; z-index: 3; display: flex; align-items: center; gap: 22px; color: #fff; }
+.hero-count { display: inline-flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 13px; font-weight: 600; letter-spacing: .04em; }
+.hero-count b { font-size: 16px; font-weight: 700; }
+.hero-count span { color: rgba(255, 255, 255, .6); }
+.hero-bar { display: block; width: 110px; height: 2px; border-radius: 2px; background: rgba(255, 255, 255, .28); overflow: hidden; }
+.hero-bar span { display: block; height: 100%; width: 33.333%; background: #fff; transition: width .5s var(--ease-out); }
+.tienda .banner-arrows { position: static; inset: auto; display: flex; gap: 8px; padding: 0; pointer-events: auto; }
+.tienda .arrow { width: 38px; height: 38px; border-radius: 11px; opacity: 1; transform: none; border: 1px solid rgba(255, 255, 255, .28); background: rgba(255, 255, 255, .12); color: #fff; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: none; transition: background .2s, color .2s, transform .2s; }
+.tienda .arrow--next { background: #fff; color: var(--ink); border-color: #fff; }
+.tienda .arrow:hover { background: #fff; color: var(--ink); transform: translateY(-1px); }
+.tienda .arrow--next:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+.tienda .arrow .icon { width: 18px; height: 18px; stroke-width: 2.2; }
+.tienda .dots { bottom: 12px; }
+
+/* Franja de servicios */
+.usp { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px; padding: 12px 18px; background: var(--paper-2); border: 1px solid var(--line); border-radius: var(--r-lg); }
+.usp-item { display: flex; align-items: center; gap: 12px; padding: 4px 6px; }
+.usp-item + .usp-item { border-left: 1px solid var(--line); padding-left: 18px; }
+.usp-icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; background: #fff; border: 1px solid var(--line); color: var(--ink); flex: none; }
+.usp-icon .icon { width: 20px; height: 20px; stroke-width: 2; }
+.usp-item b { display: block; font-size: 13.5px; font-weight: 700; }
+.usp-item div span { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+/* Categorías en círculos */
+.tienda .popcats { gap: 14px 12px; }
+.tienda .popcat { text-align: center; }
+.tienda .popcat-img { width: 108px; height: 108px; max-height: none; margin: 0 auto; border-radius: 50%; border: 1px solid var(--line); background: var(--paper-2); }
+.tienda .popcat-img img { max-width: 62%; max-height: 62%; }
+.tienda .popcat:hover .popcat-img { background: #fff; border-color: var(--ink-soft); }
+.tienda .popcat-badge { top: 2px; right: 2px; }
+.tienda .popcat-name { padding: 8px 0 0; }
+.tienda .popcat-name h3 { font-size: 13.5px; font-weight: 600; }
+.tienda .popcat-name small { display: none; }
+
+/* Ecosistema DELTA Pro Ultra (anatomía "Curated bundles"): video vertical a la izquierda con nombre y precio
+   sobre degradado y botón circular; a la derecha 2×2 componentes con imagen sobre fondo suave, nombre, línea y precio */
+.eco { margin-top: 40px; }
+.eco-grid { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: 24px; align-items: stretch; }
+/* El tile mide 16:9 (proporción del video oficial) y ocupa ~60 % del ancho; las tarjetas se estiran a su altura */
+.eco-hero { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: var(--r-lg); overflow: hidden; background: var(--ink); color: #fff; isolation: isolate; }
+.eco-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.eco-hero::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(0deg, rgba(12, 12, 12, .82) 0%, rgba(12, 12, 12, .25) 38%, transparent 62%); }
+.eco-play { position: absolute; left: 50%; top: 50%; z-index: 2; width: 52px; height: 52px; margin: -26px 0 0 -26px; display: grid; place-items: center; border-radius: 50%; background: #fff; color: var(--ink); box-shadow: 0 12px 28px -12px rgba(0, 0, 0, .7); transition: transform .3s var(--ease-out); }
+.eco-play .icon { width: 18px; height: 18px; stroke-width: 2.2; transform: rotate(-45deg); }
+.eco-hero:hover .eco-play { transform: scale(1.08); }
+.eco-hero-copy { position: absolute; left: 24px; right: 24px; bottom: 22px; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.eco-hero-copy b { display: block; font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.eco-hero-copy small { display: block; font-size: 12.5px; color: rgba(255, 255, 255, .75); margin-top: 3px; }
+.eco-hero-copy strong { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .85); white-space: nowrap; }
+.eco-hero-copy strong .icon { width: 14px; height: 14px; }
+.eco-items { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; min-height: 0; }
+.eco-item { display: flex; flex-direction: column; min-height: 0; color: var(--ink); }
+.eco-img { position: relative; display: block; flex: 1; min-height: 0; border-radius: 12px; overflow: hidden; background: radial-gradient(70% 70% at 50% 100%, #DCE3E8 0%, transparent 70%), linear-gradient(180deg, #F7F9FA 0%, #EEF2F5 100%); }
+.eco-img img { position: absolute; left: 19%; top: 14%; width: 62%; height: 72%; object-fit: contain; filter: drop-shadow(0 10px 12px rgba(12, 12, 12, .18)); transition: transform .5s var(--ease-out); }
+.eco-item:hover .eco-img img { transform: translateY(-4px) scale(1.03); }
+.eco-item b { font-size: 15px; font-weight: 600; margin-top: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eco-item small { font-size: 12.5px; color: var(--muted); margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eco-item strong { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; color: var(--muted); margin-top: 6px; }
+.eco-item strong .icon { width: 13px; height: 13px; }
+
+/* Para ti: columna de ofertas + cuadrícula */
+.shop-grid { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 4px; }
+.deal-col { display: grid; gap: 16px; }
+.deal { position: relative; display: block; border-radius: var(--r-lg); overflow: hidden; }
+.deal--dark { padding: 22px 22px 26px; min-height: 300px; background: var(--ink); color: #fff; background-image: radial-gradient(70% 60% at 100% 100%, rgba(93, 203, 222, .28), transparent 65%); }
+.deal-kicker { display: block; font-family: var(--font-display); font-size: 12px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.deal--dark h3 { font-size: 22px; font-weight: 600; letter-spacing: -.02em; margin-top: 8px; }
+.deal--dark p { font-size: 14px; color: rgba(255, 255, 255, .72); margin: 4px 0 14px; }
+.deal--dark .btn { position: relative; z-index: 1; }
+.deal--dark img { position: absolute; right: -6px; bottom: -8px; width: 170px; height: 170px; object-fit: contain; filter: drop-shadow(0 16px 20px rgba(0, 0, 0, .5)); }
+/* Destacado de la semana (opción 5 elegida por Luis): tinte cian muy suave, copy arriba, precio público,
+   enlace con flecha y recorte del producto a sangre abajo a la derecha (como los tiles ShopNova) */
+.deal--pick { padding: 22px 22px 24px; min-height: 300px; background: #DDF2F5; color: var(--ink); background-image: radial-gradient(60% 55% at 100% 100%, rgba(255, 255, 255, .7), transparent 70%); }
+.deal--pick .deal-kicker { color: #4E6B70; }
+.deal--pick h3 { font-size: 22px; font-weight: 600; letter-spacing: -.02em; margin-top: 8px; }
+.deal--pick p { font-size: 13.5px; line-height: 1.45; color: #4E6B70; margin: 6px 0 14px; max-width: 52%; }
+.deal--pick .deal-price { position: relative; z-index: 1; display: flex; align-items: flex-start; gap: 6px; max-width: 52%; font-size: 13px; line-height: 1.35; font-weight: 600; color: #4E6B70; margin: 0; }
+.deal--pick .deal-price .icon { flex: none; margin-top: 2px; }
+.deal--pick .deal-price .icon { width: 14px; height: 14px; }
+.deal--pick .deal-price small { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .12em; text-transform: uppercase; color: #4E6B70; }
+.deal-link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: 13.5px; font-weight: 700; color: var(--ink); }
+.deal-link .icon { width: 15px; height: 15px; transition: transform .3s var(--ease-out); }
+.deal--pick:hover .deal-link .icon { transform: translateX(4px); }
+.deal--pick img { position: absolute; right: -8px; bottom: -6px; width: 150px; height: 150px; object-fit: contain; filter: drop-shadow(0 14px 16px rgba(12, 12, 12, .22)); transition: transform .5s var(--ease-out); }
+.deal--pick:hover img { transform: translateY(-4px); }
+.shop-main { min-width: 0; }
+.tienda .shop-main .chips { margin-bottom: 14px; }
+.tienda .products-rail { margin-top: 0; }
+.tienda .products-rail .rail-track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; overflow: visible; padding: 0; }
+.tienda .products-rail .ptile { flex: none; width: auto; }
+.tienda .products-rail .ptile:nth-child(n + 9) { display: none; }
+.tienda .products-rail .rail-btn { display: none; }
+
+/* Formas de pago en el footer: logos reales sobre pill blanca (como los footers de e-commerce) */
+.pay-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.pay { display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 32px; padding: 0 7px; border-radius: 6px; background: #fff; box-sizing: border-box; }
+.pay img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pay--text { width: auto; padding: 0 10px; font-size: 12px; font-weight: 800; letter-spacing: .02em; color: #0C0C0C; }
+
+@media (max-width: 1200px) {
+  .tienda .hero { grid-template-columns: minmax(0, 1fr); }
+  .cat-side { display: none; }
+  .tienda .banner { height: auto; aspect-ratio: 21 / 9; }
+  .tienda .slide-title { font-size: 42px; }
+  .tienda .products-rail .rail-track { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .tienda .products-rail .ptile:nth-child(n + 7) { display: none; }
+}
+@media (max-width: 1024px) {
+  .usp { grid-template-columns: repeat(2, 1fr); }
+  .eco-grid { grid-template-columns: 1fr; }
+  .eco-hero { width: 100%; }
+  .eco-img { flex: none; aspect-ratio: 4 / 3; }
+  .eco-items { grid-template-rows: auto auto; }
+  .tienda .slide-title { font-size: 36px; }
+  .usp-item + .usp-item { border-left: 0; padding-left: 6px; }
+  .shop-grid { grid-template-columns: 1fr; }
+  .deal-col { grid-template-columns: 1fr 1fr; }
+  .tienda .products-rail .rail-track { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tienda .popcat-img { width: 92px; height: 92px; }
+}
+@media (max-width: 767px) {
+  .tienda .banner { aspect-ratio: 1 / 1; }
+  .tienda .slide::before { background: linear-gradient(0deg, rgba(12, 12, 12, .88) 0%, rgba(12, 12, 12, .45) 50%, rgba(12, 12, 12, .1) 100%); }
+  .tienda .slide-copy { left: 20px; right: 20px; bottom: 34px; max-width: none; gap: 10px; }
+  .tienda .slide-title { font-size: 28px; }
+  .tienda .slide-text { font-size: 13px; max-width: 34ch; }
+  .tienda .slide-brand { height: 26px; }
+  .tienda .slide-cta { height: 38px; font-size: 13.5px; }
+  .hero-nav { display: none; }
+  .search-cat { display: none; }
+  .deal-col { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .eco-items { gap: 16px 12px; }
+  .eco-item b { font-size: 14px; }
+  .usp { grid-template-columns: 1fr; }
+  .tienda .products-rail .rail-track { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tienda .popcat-img { width: 80px; height: 80px; }
+}

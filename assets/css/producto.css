@@ -1,0 +1,204 @@
+/* =====================================================================
+   distribuidores.powerme.mx — Plantilla de ficha de producto (21 sep 2026)
+   v7 (noche): cabecera rehecha con la anatomía del mockup que pasó Luis
+   (foto grande cuadrada a la izquierda; a la derecha nombre, badges negros,
+   bloque de precio con divisor vertical y logos de pago, descripción corta con
+   "Más detalles", tres cajas de beneficios, opciones en tarjetas, "Disponible",
+   botón negro a todo lo ancho y nota gris). Sin reseñas. Vista CON SESIÓN.
+   Regla del sitio real: precios sin IVA con "+ IVA"; el IVA se calcula al pagar.
+   Debajo siguen la descripción con imágenes (EcoFlow) y las especificaciones.
+   Se carga encima de styles.css (header, nav, footer y botones vienen de ahí).
+   ===================================================================== */
+
+.pdp-page { --pdp-max: 1240px; }
+.pdp-wrap { width: min(var(--pdp-max), 100% - 2 * clamp(24px, 5vw, 96px)); margin-inline: auto; }
+
+/* ---------- Migas ---------- */
+.crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; padding: 14px 0 18px; font-size: 12px; color: var(--muted); }
+.crumbs a:hover { color: var(--ink); }
+.crumbs .sep { color: var(--line-strong); }
+.crumbs [aria-current] { color: var(--ink-soft); }
+
+/* ---------- Cabecera: foto grande izquierda · info derecha (50/50 como el mockup) ---------- */
+.pdp { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1fr); gap: clamp(40px, 5.5vw, 80px); align-items: start; padding-bottom: 44px; } /* tarjeta un poco más compacta que la info (pedido de Luis) */
+
+.gallery { position: sticky; top: 24px; }
+.gallery-main { position: relative; aspect-ratio: 1 / 1; background: var(--paper-2); border-radius: 14px; overflow: hidden; }
+.gallery-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 4%; transition: opacity .25s var(--ease-out); }
+.gallery-main img.is-photo { padding: 0; object-fit: cover; }
+.gallery-main img.is-switching { opacity: 0; }
+.gallery-arrows { position: static; }
+.gallery-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 40px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: var(--ink); display: grid; place-items: center; box-shadow: var(--shadow-card); transition: background .18s, border-color .18s; }
+.gallery-arrow--prev { left: 14px; }
+.gallery-arrow--next { right: 14px; }
+.gallery-arrow:hover { background: var(--paper-3); border-color: var(--line-strong); }
+.gallery-arrow .icon { width: 15px; height: 15px; stroke-width: 2; }
+.gallery-arrow--prev .icon { transform: rotate(180deg); }
+.gallery-count { position: absolute; left: 16px; bottom: 14px; font-family: var(--font-mono); font-size: 11px; color: var(--muted); letter-spacing: .04em; }
+
+.thumbs { display: flex; gap: 8px; margin-top: 10px; }
+.thumb { width: 64px; aspect-ratio: 1 / 1; border-radius: 8px; background: var(--paper-2); border: 1px solid var(--line); overflow: hidden; padding: 0; transition: border-color .18s, box-shadow .18s; }
+.thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8%; }
+.thumb.is-photo img { padding: 0; object-fit: cover; }
+.thumb:hover { border-color: var(--line-strong); }
+.thumb[aria-current="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+
+/* ---------- Info ---------- */
+.pdp-info { display: flex; flex-direction: column; gap: 0; min-width: 0; }
+.pdp-info > * + * { border-top: 1px solid var(--line); }
+.pdp-head { display: flex; flex-direction: column; gap: 10px; padding: 4px 0 16px; }
+.pdp-title { font-size: 36px; font-weight: 600; line-height: 1.08; letter-spacing: -.025em; color: var(--ink); }
+.pdp-badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.pdp-badge { display: inline-flex; align-items: center; height: 32px; padding: 0 14px; border-radius: 8px; background: var(--ink); color: #fff; font-size: 12.5px; font-weight: 500; letter-spacing: .01em; }
+.pdp-meta { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--muted); }
+.sku-copy { display: inline-flex; align-items: center; gap: 5px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ink-soft); padding: 1px 5px; margin: -1px -5px; border-radius: 5px; transition: background .18s; }
+.sku-copy:hover { background: var(--paper-2); }
+.sku-copy .icon { width: 12px; height: 12px; color: var(--muted-2); }
+.sku-copy .done { font-family: var(--font-body); font-weight: 500; font-size: 12px; color: var(--ok); display: none; }
+.sku-copy.is-done .done { display: inline; }
+
+/* Precio: distribuidor grande + público debajo | divisor | etiqueta y formas de pago */
+.pdp-price { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; padding: 16px 0; }
+.price-main { padding-right: 24px; border-right: 1px solid var(--line-strong); }
+.price-dealer .amount { font-size: 40px; font-weight: 600; letter-spacing: -.03em; line-height: 1; color: var(--ink); }
+.price-dealer .tax { margin-left: 8px; font-size: 13px; }
+.price-public { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.price-public .amount { font-size: 16px; font-weight: 500; color: var(--muted); margin-left: 4px; }
+.price-public .tax { color: var(--muted); font-size: 12px; margin-left: 4px; }
+.tax { font-weight: 500; color: var(--ink-soft); }
+.amount .currency { font-size: .6em; font-weight: 500; vertical-align: .4em; margin-right: 1px; color: inherit; }
+.price-side { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.price-side-k { font-size: 15px; font-weight: 600; color: var(--ink); }
+.price-side-v { font-size: 12.5px; color: var(--muted); }
+.pay-row { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; margin-top: 6px; }
+.pay { display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 26px; padding: 0 5px; border-radius: 5px; background: #fff; border: 1px solid var(--line); }
+.pay img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.pay--text { width: auto; padding: 0 8px; font-size: 10.5px; font-weight: 700; letter-spacing: .04em; color: var(--ink); }
+
+/* Descripción corta + Más detalles */
+.pdp-summary { padding: 14px 0; display: flex; flex-direction: column; gap: 6px; }
+.pdp-desc { font-size: 14px; line-height: 1.5; color: var(--ink-soft); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.pdp-more { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: 500; color: var(--ink); }
+.pdp-more .icon { width: 14px; height: 14px; stroke-width: 2; }
+.pdp-more:hover { color: var(--cyan-text); }
+
+/* Beneficios: franja sin recuadros (Luis: "que no sean cuadrados"): icono en círculo gris suave + texto, separados por una línea fina */
+.pdp-perks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 14px 0; border-top: 0 !important; }
+.pdp-perks li { display: flex; align-items: center; gap: 10px; padding: 4px 14px; border-left: 1px solid var(--line); font-size: 12.5px; font-weight: 500; color: var(--ink-soft); line-height: 1.3; min-width: 0; }
+.pdp-perks li:first-child { border-left: 0; padding-left: 0; }
+.pdp-perks .icon { flex: none; width: 34px; height: 34px; padding: 8px; border-radius: 50%; background: var(--paper-2); color: var(--ink); stroke-width: 1.8; }
+
+/* Opciones (modelo / potencia) en tarjetas */
+.pdp-field { display: flex; flex-direction: column; gap: 8px; padding: 14px 0; }
+.pdp-label { font-size: 15px; font-weight: 500; color: var(--muted); }
+.models { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.models:has(> :nth-child(4)) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.model { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border: 1px solid var(--line-strong); border-radius: 10px; color: var(--ink); line-height: 1.25; min-width: 0; transition: border-color .18s, background .18s; }
+.model b { font-size: 14px; font-weight: 600; }
+.model small { font-size: 11.5px; color: var(--muted); }
+.model:hover { background: var(--paper-2); }
+.model[aria-current="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+
+/* Disponible + cantidad + botón negro a todo lo ancho + nota */
+.buy { display: flex; flex-direction: column; gap: 10px; padding-top: 14px; }
+.pdp-stock { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--ink); }
+.pdp-stock .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.buy-row { display: flex; align-items: center; gap: 10px; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line-strong); border-radius: 10px; height: 48px; overflow: hidden; flex: none; }
+.qty button { width: 40px; height: 100%; display: grid; place-items: center; color: var(--ink); transition: background .18s; }
+.qty button:hover { background: var(--paper-2); }
+.qty button .icon { width: 13px; height: 13px; stroke-width: 2.2; }
+.qty input { width: 44px; height: 100%; border: 0; border-left: 1px solid var(--line); border-right: 1px solid var(--line); text-align: center; font-size: 15px; font-weight: 600; -moz-appearance: textfield; background: #fff; }
+.qty input::-webkit-outer-spin-button, .qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+/* Botón de carrito: gris "suave" como el resto del sitio (Luis pidió regresar a este estilo tras probar el negro del mockup) */
+.buy .btn-lg { flex: 1 1 auto; height: 48px; border-radius: 10px; font-size: 15px; }
+.buy .btn-lg .icon { width: 17px; height: 17px; }
+.buy .btn-file { height: 48px; width: 48px; padding: 0; flex: none; border-radius: 10px; }
+.buy .btn-file .icon { width: 17px; height: 17px; }
+.pdp-note { font-size: 12.5px; color: var(--muted); line-height: 1.45; }
+
+/* ---------- Especificaciones (EcoFlow MX, agrupadas) ---------- */
+.specs { border-top: 1px solid var(--line); padding: 40px 0 64px; }
+.specs-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 20px; }
+.specs-head h2 { font-size: 24px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.specs-head p { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.specs-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 56px; }
+.spec-group h3 { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); padding: 18px 0 8px; border-bottom: 1px solid var(--ink); }
+.spec-group dl { display: grid; grid-template-columns: minmax(140px, 38%) 1fr; }
+.spec-group dt, .spec-group dd { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 13px; line-height: 1.45; }
+.spec-group dt { color: var(--muted); padding-right: 16px; }
+.spec-group dd { color: var(--ink); font-weight: 500; }
+.specs-note { margin-top: 20px; font-size: 12px; color: var(--muted); line-height: 1.5; max-width: 90ch; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .pdp { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .gallery { position: static; }
+  .gallery-main { aspect-ratio: 4 / 3; }
+  .specs-grid { grid-template-columns: 1fr; gap: 0; }
+}
+@media (max-width: 680px) {
+  .crumbs { padding: 12px 0 14px; }
+  .pdp-title { font-size: 28px; }
+  .pdp-price { grid-template-columns: 1fr; gap: 12px; }
+  .price-main { padding-right: 0; border-right: 0; }
+  .price-dealer .amount { font-size: 32px; }
+  .models, .models:has(> :nth-child(4)) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .buy-row { flex-wrap: wrap; }
+  .btn-buy { flex-basis: 100%; order: 3; }
+  .thumbs { gap: 6px; }
+  .thumb { width: 52px; }
+  .specs { padding: 32px 0 48px; }
+  .specs-head { flex-direction: column; align-items: flex-start; }
+  .spec-group dl { grid-template-columns: 1fr; }
+  .spec-group dt { padding-bottom: 0; border-bottom: 0; }
+}
+
+/* ---------- Descripción con imágenes (fotos oficiales de EcoFlow, texto propio en HTML) ---------- */
+.desc { border-top: 1px solid var(--line); padding: 40px 0 24px; display: flex; flex-direction: column; gap: 36px; }
+.desc-head { max-width: 62ch; }
+.desc-kicker { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+.desc-head h2 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.desc-head p { font-size: 14px; color: var(--ink-soft); margin-top: 8px; line-height: 1.55; }
+.desc-block h3, .feature h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
+.desc-block > h3 { margin-bottom: 14px; }
+.desc img { width: 100%; height: 100%; object-fit: cover; display: block; background: var(--paper-2); }
+
+.charge-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.charge { display: flex; flex-direction: column; gap: 6px; }
+.charge img { aspect-ratio: 3 / 2; border-radius: 10px; margin-bottom: 4px; }
+.charge b { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.charge span { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+
+.feature-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.feature { display: flex; flex-direction: column; gap: 12px; }
+.feature img { aspect-ratio: 16 / 10; border-radius: 12px; }
+.feature p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin-top: 4px; max-width: 60ch; }
+.feature--wide { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: center; }
+.feature--wide img { aspect-ratio: 16 / 9; }
+
+.scene-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.scene { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.scene img { aspect-ratio: 4 / 3; border-radius: 10px; }
+.scene b { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.scene span { display: block; font-size: 12px; line-height: 1.5; color: var(--muted); margin-top: 2px; }
+
+.safe-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.safe { display: flex; flex-direction: column; gap: 6px; }
+.safe img { aspect-ratio: 16 / 9; border-radius: 10px; margin-bottom: 4px; }
+.safe b { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.safe span { font-size: 12.5px; line-height: 1.5; color: var(--ink-soft); }
+.desc-note { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+@media (max-width: 1024px) {
+  .charge-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .scene-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .feature--wide { grid-template-columns: 1fr; gap: 12px; }
+}
+@media (max-width: 680px) {
+  .desc { padding: 32px 0 16px; gap: 28px; }
+  .desc-head h2 { font-size: 22px; }
+  .charge-grid, .feature-grid, .safe-grid { grid-template-columns: 1fr; }
+  .charge, .safe { display: grid; grid-template-columns: 112px 1fr; gap: 2px 12px; align-items: start; }
+  .charge img, .safe img { grid-row: 1 / 3; aspect-ratio: 1 / 1; margin: 0; }
+}

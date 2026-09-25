@@ -1,0 +1,21 @@
+# Material de trabajo: no forma parte del sitio publicado
+capturas/
+referencias/
+revisiones/
+pruebas/
+notas.md
+
+# Fuentes del sitio (el HTML publicado es el generado por los build_*)
+index-clasico.html
+index-tienda.html
+
+# Temporales de los generadores y de las verificaciones
+_tmp_*.html
+_frame_tmp.html
+
+# Windows y OneDrive
+Thumbs.db
+desktop.ini
+*.tmp
+~$*
+.DS_Store

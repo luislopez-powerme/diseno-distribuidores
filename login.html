@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es-MX" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Iniciar sesión · PowerMe Distribuidores</title>
+<meta name="description" content="Inicia sesión en el portal de distribuidores PowerMe para ver precios de mayoreo EcoFlow y ATESS y comprar en línea.">
+<meta name="theme-color" content="#0C0C0C">
+<link rel="icon" type="image/svg+xml" href="assets/logos/favicon-powerme.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260924i">
+<link rel="stylesheet" href="assets/css/tienda.css?v=20260924g">
+<link rel="stylesheet" href="assets/css/paginas.css?v=20260924b">
+<link rel="stylesheet" href="assets/css/registro.css?v=20260924b">
+<link rel="stylesheet" href="assets/css/login.css?v=20260924b">
+</head>
+<body class="tienda">
+
+<!-- Sprite de iconos (trazo 1.8, estilo lineal) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 21a2 2 0 0 0 4 0"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 24 24"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+    <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 3h2l2.5 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9.5" cy="20.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18" cy="20.5" r="1.2" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+    <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3v4h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-headset" viewBox="0 0 24 24"><path d="M4 13a8 8 0 0 1 16 0"/><path d="M4 13h3v5H5a1 1 0 0 1-1-1zM17 13h3v4a1 1 0 0 1-1 1h-2z"/><path d="M20 18v1a2 2 0 0 1-2 2h-4"/></symbol>
+    <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="m8.5 14-1.5 7 5-3 5 3-1.5-7"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-6-5.3-6-10a6 6 0 0 1 12 0c0 4.7-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="m16 10 5-3v10l-5-3z"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+    <symbol id="i-box" viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol>
+    <symbol id="i-like" viewBox="0 0 24 24"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3z"/><path d="m7 11 4-8a2 2 0 0 1 2 2v4h5a2 2 0 0 1 2 2.3l-1 6a2 2 0 0 1-2 1.7H7"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+    <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></symbol>
+    <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+    <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10.5h18M7 15h4"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="m2 9 10-4 10 4-10 4z"/><path d="M6 11v5c0 1.6 2.7 3 6 3s6-1.4 6-3v-5M22 9v6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7.5 9 6 9-6"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12.5h5"/></symbol>
+    <symbol id="i-trend" viewBox="0 0 24 24"><path d="m3 17 6-6 4 4 8-8"/><path d="M14 7h7v7"/></symbol>
+    <!-- Iconos a dos tintas (48u) para la franja de beneficios: trazo negro + acento cian en .acc, como los de Sweetwater -->
+    <symbol id="i-p-truck" viewBox="0 0 48 48"><path d="M6 12h22v20H6zM28 18h9l5 6v8H28"/><path class="acc" d="M2 22h10M2 27h7"/><circle class="acc" cx="14" cy="34" r="3.5"/><circle class="acc" cx="36" cy="34" r="3.5"/></symbol>
+    <symbol id="i-p-person" viewBox="0 0 48 48"><circle cx="21" cy="16" r="7"/><path d="M7 40c0-8 6.3-13 14-13s14 5 14 13"/><path class="acc" d="M30 9.5a7 7 0 0 1 0 13M36 29.5a13 13 0 0 1 5 10.5"/></symbol>
+    <symbol id="i-p-badge" viewBox="0 0 48 48"><circle cx="24" cy="18" r="11"/><path d="m17 27-3 15 10-6 10 6-3-15"/><path class="acc" d="m19.5 18 3 3 6-6"/></symbol>
+    <symbol id="i-p-layers" viewBox="0 0 48 48"><path d="m24 6 18 9-18 9L6 15z"/><path class="acc" d="m6 24 18 9 18-9"/><path d="m6 33 18 9 18-9"/></symbol>
+    <symbol id="i-p-headset" viewBox="0 0 48 48"><path d="M8 26a16 16 0 0 1 32 0"/><path d="M8 26h6v10H10a2 2 0 0 1-2-2zM34 26h6v8a2 2 0 0 1-2 2h-4z"/><path class="acc" d="M40 36v2a4 4 0 0 1-4 4h-8M26 42h-3"/></symbol>
+    <symbol id="i-p-shield" viewBox="0 0 48 48"><path d="M24 5l16 6v12c0 10-7 17-16 19-9-2-16-9-16-19V11z"/><path class="acc" d="m17 24 5 5 10-10"/></symbol>
+    <symbol id="i-p-cap" viewBox="0 0 48 48"><path d="M4 18 24 9l20 9-20 9z"/><path d="M12 22v9c0 3 5.4 6 12 6s12-3 12-6v-9"/><path class="acc" d="M44 18v12"/><circle class="acc" cx="44" cy="33" r="2"/></symbol>
+  </defs>
+</svg>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site-header">
+  <div class="container header-main">
+    <a class="brand" href="index.html" aria-label="PowerMe Distribuidores, inicio">
+      <img src="assets/logos/LOGO_PowerMe_MainB.svg" alt="PowerMe Energy" width="1080" height="157">
+    </a>
+
+    <form class="search" role="search" action="buscar.html" method="get">
+      <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
+      <input type="search" name="q" placeholder="Buscar productos…" aria-label="Buscar productos">
+      <select class="search-cat" aria-label="Categoría"><option>Todas las categorías</option><option>Serie DELTA</option><option>Serie RIVER</option><option>Paneles solares</option><option>Baterías extra</option><option>Inteligentes</option><option>ATESS</option><option>Accesorios</option></select>
+      <kbd aria-hidden="true">/</kbd>
+    </form>
+
+    <nav class="header-actions" aria-label="Cuenta">
+      <a class="action" href="registro.html"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg><span>Registrarme</span></a>
+      <a class="action" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg><span>Iniciar sesión</span></a>
+      <a class="btn btn-cyan btn-cart" href="login.html?next=carrito.html"><svg class="icon" aria-hidden="true"><use href="#i-cart"/></svg><span>Carrito</span><b class="count">0</b></a>
+    </nav>
+  </div>
+
+  <div class="header-nav">
+    <div class="container nav-inner">
+      <ul class="nav-list">
+        <li class="nav-item has-mega">
+          <button class="nav-link nav-products" aria-expanded="false" aria-haspopup="true">
+            Productos<svg class="icon chev" aria-hidden="true"><use href="#i-chevron"/></svg>
+          </button>
+          <div class="mega">
+            <div class="mega-brand mega-brand--ef"><img src="assets/logos/EF_Wordmark_B.svg" alt="EcoFlow"><span>Energía portátil, solar y respaldo residencial</span></div>
+            <div class="mega-col">
+              <h4>Estaciones portátiles</h4>
+              <a href="categoria.html?serie=Serie%20DELTA">Serie DELTA <small>5</small></a>
+              <a href="categoria.html?q=DELTA%203">Serie 3 · 2026 <small>6</small></a>
+              <a href="categoria.html?serie=Serie%20DELTA%20Pro">DELTA Pro Ultra <small>3</small></a>
+              <a href="categoria.html?serie=Serie%20RIVER">Serie RIVER <small>6</small></a>
+              <a href="categoria.html?serie=Trail">Trail <small>2</small></a>
+            </div>
+            <div class="mega-col">
+              <h4>Solar</h4>
+              <a href="categoria.html?serie=Paneles%20solares">Paneles solares <small>6</small></a>
+              <a href="categoria.html?q=Ligero">Paneles ligeros · nueva gen. <small>4</small></a>
+              <a href="#">Combos solares DELTA</a>
+              <a href="#">Combos solares RIVER</a>
+            </div>
+            <div class="mega-col">
+              <h4>Hogar y energía inteligente</h4>
+              <a href="categoria.html?serie=Inteligentes">Inteligentes <small>1</small></a>
+              <a href="#">Ocean PRO</a>
+              <a href="categoria.html?serie=GLACIER">GLACIER Classic <small>2</small></a>
+              <a href="#">Accesorios WAVE</a>
+              <a href="#">Accesorios GLACIER</a>
+            </div>
+            <div class="mega-col">
+              <h4>Ampliación y accesorios</h4>
+              <a href="categoria.html?serie=Bater%C3%ADas%20extra">Baterías extra <small>3</small></a>
+              <a href="#">Combos de baterías</a>
+              <a href="#">Accesorios DELTA Pro Ultra</a>
+              <a href="#">Accesorios y cables</a>
+              <a href="#">Rapid Pro</a>
+            </div>
+            <aside class="mega-atess" aria-label="ATESS">
+              <div class="mega-atess-head"><b>ATESS</b><span>Almacenamiento de energía para comercio e industria.</span></div>
+              <a href="index.html#atess">Inversores híbridos <small>1</small></a>
+              <a href="index.html#atess">Gabinetes de baterías <small>3</small></a>
+              <a href="index.html#atess">Monitoreo <small>1</small></a>
+              <figure class="mega-atess-fig"><img src="assets/img/productos/atess-hps30000tl.webp" alt="" loading="lazy"><figcaption>HPS30000TL · Inversor híbrido trifásico</figcaption></figure>
+              <a class="btn btn-outline btn-sm" href="index.html#atess">Ver catálogo ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            </aside>
+          </div>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="categoria.html?nuevo=1"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg>Nuevos</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#ofertas"><svg class="icon" aria-hidden="true"><use href="#i-tag"/></svg>Promociones</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#capacitacion"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Capacitación</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#soporte"><svg class="icon" aria-hidden="true"><use href="#i-headset"/></svg>Soporte</a></li>
+        <li class="nav-item"><a class="nav-link nav-link--accent" href="programa.html"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg>Programa de distribuidores</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="page login-page">
+  <div class="container">
+    <nav class="crumbs" aria-label="Ruta"><a href="index.html">Inicio</a><span class="sep">/</span><span aria-current="page">Iniciar sesión</span></nav>
+
+    <div class="login-wrap">
+      <section class="login-card" aria-label="Iniciar sesión">
+        <!-- Panel izquierdo: foto EcoFlow + marca + titular + prueba social -->
+        <aside class="login-side">
+          <img class="login-photo" src="assets/img/hero/login.webp" alt="" width="1200" height="1500" fetchpriority="high">
+          <div class="login-side-top">
+            <img class="login-logo" src="assets/logos/LOGO_PowerMe_MainW.svg" alt="PowerMe Energy" width="1080" height="157">
+            <span class="login-brand">Distribuidores</span>
+          </div>
+          <h2 class="login-claim">Donde los distribuidores EcoFlow venden más.</h2>
+          <div class="login-proof">
+            <div class="login-avatars" aria-hidden="true"><span>GA</span><span>NV</span><span>RC</span></div>
+            <span>Más de 120 distribuidores en 32 estados</span>
+          </div>
+        </aside>
+
+        <!-- Formulario -->
+        <form class="login-form" method="post" action="#" novalidate data-login>
+          <div class="login-head">
+            <h1>Bienvenido de nuevo</h1>
+            <p>Inicia sesión en tu cuenta de distribuidor.</p>
+          </div>
+
+          <div class="field">
+            <label for="login-user">Correo o nombre de usuario</label>
+            <input type="text" id="login-user" name="username" placeholder="nombre@empresa.com" autocomplete="username" required>
+          </div>
+          <div class="field">
+            <div class="field-row"><label for="login-pass">Contraseña</label><a href="recuperar.html" class="field-link">¿Olvidaste tu contraseña?</a></div>
+            <span class="pw"><input type="password" id="login-pass" name="password" placeholder="••••••••" autocomplete="current-password" required><button type="button" class="pw-toggle" data-pw aria-label="Mostrar contraseña">Mostrar</button></span>
+          </div>
+          <label class="login-remember"><input type="checkbox" name="rememberme" value="forever"><span class="fbox" aria-hidden="true"></span><span>Mantener la sesión iniciada</span></label>
+
+          <button class="btn btn-ink btn-lg login-submit" type="submit">Iniciar sesión</button>
+          <p class="login-error" data-error hidden>Escribe tu usuario y tu contraseña.</p>
+
+          <p class="login-foot">¿Aún no tienes cuenta? <a href="registro.html">Solicitar alta de distribuidor</a></p>
+        </form>
+      </section>
+
+      <p class="login-note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Los precios de distribuidor y el carrito solo se muestran con sesión iniciada. Las cuentas se activan tras la revisión de un especialista.</p>
+    </div>
+  </div>
+</main>
+
+  <!-- Reproductor de videos (pop-up): usa el TikTok Player (player/v1) en un iframe; se rellena por JS -->
+  <div class="vmodal" id="vmodal" hidden>
+    <div class="vmodal-back" data-close></div>
+    <div class="vmodal-box" role="dialog" aria-modal="true" aria-labelledby="vmodal-title">
+      <button class="vmodal-close" type="button" data-close aria-label="Cerrar"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></button>
+      <div class="vmodal-frame"><span class="vmodal-spin" aria-hidden="true"></span><video playsinline controls preload="none" poster=""></video></div>
+      <div class="vmodal-foot"><h4 id="vmodal-title"></h4><a class="btn btn-ink vmodal-product" href="categoria.html">Ver producto<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a></div>
+    </div>
+  </div>
+
+
+<!-- ============================ FRANJA PREVIA AL FOOTER: suscripción + Soporte con la ficha del ejecutivo asignado (destino del enlace "Soporte" del menú) ============================ -->
+<section class="candy" id="soporte" aria-label="Suscripción y soporte">
+  <div class="container candy-row">
+    <div class="candy-col">
+      <span class="support-kicker">Novedades</span>
+      <h4 class="candy-h">Un correo a la semana</h4>
+      <p>Lanzamientos, precios y cursos.</p>
+      <form class="candy-form" onsubmit="return false">
+        <input type="email" placeholder="Tu correo de trabajo" aria-label="Correo electrónico">
+        <button class="btn btn-cyan" type="submit">Suscribirme</button>
+      </form>
+    </div>
+    <div class="candy-col candy-col--support">
+      <div class="support-copy">
+        <span class="support-kicker">Soporte</span>
+        <h4 class="candy-h">Tu ejecutivo de cuenta</h4>
+        <p>Un solo contacto para pedidos, envíos y soporte técnico.</p>
+      </div>
+      <!-- Ficha del ejecutivo: en producción se llena con los datos del asesor asignado a la cuenta (data-agent-*) -->
+      <div class="exec-card" data-agent-id="" data-agent-name="" data-agent-whatsapp="525500000000" data-agent-email="contacto@powerme.mx">
+        <div class="exec-head">
+          <span class="avatar exec-avatar" aria-hidden="true">PM</span>
+          <div class="exec-id">
+            <strong>Ejecutivo de cuenta PowerMe</strong>
+            <span>Se asigna al activar tu cuenta</span>
+          </div>
+        </div>
+        <div class="exec-links">
+          <a class="exec-link" href="https://wa.me/525500000000" target="_blank" rel="noopener">
+            <span class="exec-link-ico"><svg class="icon" aria-hidden="true"><use href="#i-chat"/></svg></span>
+            <span class="exec-link-txt"><small>WhatsApp</small><b>+52 55 0000 0000</b></span>
+            <svg class="icon exec-link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+          <a class="exec-link" href="mailto:contacto@powerme.mx">
+            <span class="exec-link-ico"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span>
+            <span class="exec-link-txt"><small>Correo</small><b>contacto@powerme.mx</b></span>
+            <svg class="icon exec-link-arrow" aria-hidden="true"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+        <span class="exec-foot">Lun a Vie · 9:00–18:00 h · CDMX</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="assets/logos/LOGO_PowerMe_FullW.svg" alt="PowerMe Energy" width="1080" height="157">
+        <p>Distribuidor Maestro EcoFlow en México. Portal exclusivo para distribuidores, integradores e instaladores.</p>
+        <a class="btn btn-cyan" href="registro.html">Solicitar alta de distribuidor</a>
+      </div>
+      <div>
+        <h5>Productos</h5>
+        <ul>
+          <li><a href="categoria.html?serie=Serie%20DELTA">Serie DELTA</a></li><li><a href="categoria.html?serie=Serie%20DELTA%20Pro">DELTA Pro Ultra</a></li><li><a href="categoria.html?serie=Serie%20RIVER">Serie RIVER</a></li><li><a href="categoria.html?serie=Paneles%20solares">Paneles solares</a></li><li><a href="categoria.html?serie=Bater%C3%ADas%20extra">Baterías extra</a></li><li><a href="categoria.html?serie=Inteligentes">Inteligentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Distribuidores</h5>
+        <ul>
+          <li><a href="programa.html">Programa de distribuidores</a></li><li><a href="registro.html">Solicitar alta</a></li><li><a href="login.html">Iniciar sesión</a></li><li><a href="login.html">Listas de precios</a></li><li><a href="reglamento.html">Políticas de mayoreo</a></li><li><a href="login.html">Garantías y RMA</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Recursos</h5>
+        <ul>
+          <li><a href="index.html#capacitacion">Capacitación</a></li><li><a href="login.html">Fichas técnicas</a></li><li><a href="login.html">Material de marketing</a></li><li><a href="index.html#videos">Videos</a></li><li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>PowerMe</h5>
+        <ul>
+          <li><a href="nosotros.html">Nosotros</a></li><li><a href="https://powerme.mx" target="_blank" rel="noopener">powerme.mx</a></li><li><a href="https://ecoflow.powerme.mx" target="_blank" rel="noopener">Tienda EcoFlow</a></li><li><a href="https://empleo.powerme.mx" target="_blank" rel="noopener">Bolsa de trabajo</a></li><li><a href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 PowerMe Energy. Todos los derechos reservados.</span>
+      <nav aria-label="Legal"><a href="#">Aviso de privacidad</a><a href="terminos.html">Términos y condiciones</a><a href="#">Política de garantía</a></nav>
+      <div class="pay-row" aria-label="Formas de pago">
+        <span class="pay pay--text" title="Transferencia SPEI">SPEI</span>
+        <span class="pay" title="Visa"><img src="assets/img/pagos/visa.svg" alt="Visa" loading="lazy"></span>
+        <span class="pay" title="Mastercard"><img src="assets/img/pagos/mastercard.svg" alt="Mastercard" loading="lazy"></span>
+        <span class="pay" title="American Express"><img src="assets/img/pagos/amex.svg" alt="American Express" loading="lazy"></span>
+        <span class="pay" title="PayPal"><img src="assets/img/pagos/paypal.svg" alt="PayPal" loading="lazy"></span>
+      </div>
+      <div class="footer-partner"><img src="assets/logos/Logo_PowerMeEcoflowP_CW_trim.png" alt="PowerMe · EcoFlow Partner" width="1134" height="182"></div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js?v=20260917b"></script>
+<script src="assets/js/login.js?v=20260924b"></script>
+<script>
+(function () {
+  var banner = document.querySelector('.banner'), nav = document.querySelector('.hero-nav'); if (!banner || !nav) return;
+  var slides = banner.querySelectorAll('.slide'), cur = nav.querySelector('[data-cur]'), bar = nav.querySelector('.hero-bar span');
+  var sync = function () {
+    var i = 0; slides.forEach(function (s, k) { if (s.classList.contains('is-active')) i = k; });
+    cur.textContent = String(i + 1).padStart(2, '0'); bar.style.width = ((i + 1) / slides.length * 100) + '%';
+  };
+  new MutationObserver(sync).observe(banner, { attributes: true, subtree: true, attributeFilter: ['class'] });
+  sync();
+})();
+</script>
+</body>
+</html>

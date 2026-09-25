@@ -1,0 +1,159 @@
+/* =====================================================================
+   distribuidores.powerme.mx — Registro de distribuidor (22 sep 2026)
+   Paso 1 términos (texto + tarjeta de aceptación fija), paso 2 formulario
+   por bloques numerados, paso 3 confirmación. Se carga encima de
+   styles.css y paginas.css (migas, kicker, título, lead).
+   ===================================================================== */
+
+/* Stepper */
+.stepper { list-style: none; margin: 4px 0 28px; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.step { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 14px; background: #fff; color: var(--muted); }
+.step-n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--line-strong); font-family: var(--font-mono); font-size: 12.5px; font-weight: 700; color: var(--muted); flex: none; }
+.step b { display: block; font-size: 14px; font-weight: 600; color: var(--ink-soft); }
+.step small { display: block; font-size: 12px; margin-top: 1px; }
+.step.is-active { border-color: var(--ink); color: var(--ink-soft); }
+.step.is-active .step-n { background: var(--ink); border-color: var(--ink); color: #fff; }
+.step.is-active b { color: var(--ink); }
+.step.is-done .step-n { background: var(--paper-3); border-color: var(--paper-3); color: var(--ink); }
+.step.is-done .step-n::before { content: '✓'; }
+.step.is-done .step-n { font-size: 0; } .step.is-done .step-n::before { font-size: 13px; }
+
+/* ---------- Paso 1 ---------- */
+/* ---------- Paso 1 (23 sep): portada con foto a sangre + título encima, y tres tarjetas ---------- */
+.terms-hero { position: relative; isolation: isolate; height: clamp(360px, 32vw, 470px); border-radius: var(--r-lg); overflow: hidden; background: var(--ink); color: #fff; display: flex; align-items: flex-end; padding: 40px 44px; }
+.terms-hero > img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%; }
+.terms-hero::before { content: ''; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(12, 12, 12, .1) 0%, rgba(12, 12, 12, .15) 40%, rgba(12, 12, 12, .78) 100%), linear-gradient(90deg, rgba(12, 12, 12, .45) 0%, rgba(12, 12, 12, 0) 60%); }
+.terms-hero-copy { display: flex; flex-direction: column; gap: 14px; max-width: 40ch; }
+.terms-hero-kicker { font-family: var(--font-display); font-size: 12.5px; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: rgba(255, 255, 255, .8); white-space: nowrap; }
+.terms-hero-title { font-size: clamp(34px, 3.9vw, 56px); font-weight: 600; line-height: 1.04; letter-spacing: -.03em; text-shadow: 0 2px 20px rgba(0, 0, 0, .35); }
+.terms-hero .intro-badge { top: 24px; right: 24px; }
+.intro-badge { position: absolute; z-index: 1; display: inline-flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 999px; background: rgba(12, 12, 12, .68); border: 1px solid rgba(255, 255, 255, .16); box-shadow: 0 6px 24px rgba(0, 0, 0, .25); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; }
+.intro-badge img { height: 22px; width: auto; display: block; }
+.intro-badge span { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .14em; text-transform: uppercase; border-left: 1px solid rgba(255, 255, 255, .3); padding-left: 12px; white-space: nowrap; }
+
+/* Términos en una columna centrada (v5, 23 sep: Luis no quiso tarjetas) */
+.tsecs { max-width: 720px; margin: 8px auto 0; }
+.tsec { padding: 40px 0 36px; border-bottom: 1px solid var(--line); }
+.tsec-head { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; margin-bottom: 22px; }
+.tsec-n { font-family: var(--font-display); font-size: 12px; font-weight: 300; letter-spacing: .2em; color: var(--muted-2); }
+.tsec-h { font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.tsec-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.tsec-list li { position: relative; padding-left: 32px; font-size: 16px; line-height: 1.6; color: var(--ink-soft); }
+.tsec-list--check li::before { content: ''; position: absolute; left: 0; top: .3em; width: 18px; height: 18px; border-radius: 50%; background: var(--ink) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><path d='m5 12 4 4L19 6'/></svg>") no-repeat center / 10px; }
+.tsec-list--cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 32px; }
+.tsec-list--cols li { padding-left: 18px; font-size: 15.5px; }
+.tsec-list--cols li::before { content: ''; position: absolute; left: 0; top: .72em; width: 6px; height: 6px; border-radius: 50%; background: var(--ink); }
+.tsec-text { display: flex; flex-direction: column; gap: 14px; text-align: center; }
+.tsec-text p { font-size: 16px; line-height: 1.65; color: var(--ink-soft); }
+.tsec-text a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Aceptación centrada, sin caja */
+.terms-accept { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 36px 0 8px; text-align: center; }
+.terms-accept .accept-check { margin: 0; padding: 16px 22px; font-size: 16px; border-radius: 14px; }
+.terms-accept .accept-check .fbox { width: 20px; height: 20px; }
+.terms-accept .btn { min-width: 320px; height: 54px; font-size: 16px; justify-content: center; }
+.terms-accept .btn:disabled { opacity: .45; cursor: not-allowed; }
+.accept-note { font-size: 13px; color: var(--muted); }
+.accept-note a { font-weight: 600; color: var(--ink); }
+
+.accept { position: sticky; top: 24px; }
+.accept-card { padding: 24px; border: 1px solid var(--line); border-radius: var(--r-lg); background: #fff; box-shadow: var(--shadow-card); display: flex; flex-direction: column; gap: 10px; }
+.accept-card h3 { font-size: 20px; font-weight: 600; letter-spacing: -.015em; }
+.accept-card > p { font-size: 14px; color: var(--muted); }
+.accept-check { display: flex; align-items: flex-start; gap: 12px; margin: 10px 0 6px; padding: 14px; border: 1px solid var(--line-strong); border-radius: 12px; font-size: 14.5px; font-weight: 600; color: var(--ink); cursor: pointer; transition: border-color .2s, background .2s; }
+.accept-check:has(input:checked) { border-color: var(--ink); background: var(--paper-2); }
+.accept-check input { position: absolute; opacity: 0; width: 0; height: 0; }
+.fbox { width: 18px; height: 18px; margin-top: 1px; border-radius: 5px; border: 1.5px solid var(--line-strong); background: #fff; flex: none; position: relative; transition: background .15s, border-color .15s; }
+.fbox::after { content: ''; position: absolute; left: 5px; top: 1px; width: 5px; height: 10px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg) scale(0); transition: transform .15s; }
+.accept-check input:checked + .fbox { background: var(--ink); border-color: var(--ink); }
+.accept-check input:checked + .fbox::after { transform: rotate(45deg) scale(1); }
+.accept-check input:focus-visible + .fbox { box-shadow: 0 0 0 3px rgba(93, 203, 222, .35); }
+.accept-card .btn { width: 100%; justify-content: center; }
+.accept-card .btn:disabled { opacity: .45; cursor: not-allowed; }
+.accept-note a { font-weight: 600; color: var(--ink); }
+
+/* ---------- Paso 2: columna centrada, secciones sin cajas (título a la izquierda, campos a la derecha) ---------- */
+.form-layout { max-width: 880px; margin: 0 auto; }  /* 23 sep: cabecera de cada bloque arriba de los campos (Luis no quiso la columna lateral) */
+.form-head { text-align: center; max-width: 640px; margin: 0 auto; padding: 8px 0 12px; }
+.form-head .page-lead { margin-left: auto; margin-right: auto; }
+.form-head .page-lead b { color: var(--ink); }
+.rform { display: flex; flex-direction: column; margin-top: 16px; }
+.fset { border: 0; border-top: 1px solid var(--line); border-radius: 0; background: transparent; padding: 30px 0 36px; margin: 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.fset-head { display: grid; grid-template-columns: 34px minmax(0, 1fr); column-gap: 14px; row-gap: 3px; align-items: center; }
+.fset-head h3 { grid-column: 2; font-size: 20px; font-weight: 600; letter-spacing: -.015em; line-height: 1.25; }
+.fset-head p { grid-column: 2; font-size: 13.5px; line-height: 1.5; color: var(--muted); }
+.fset-n { grid-column: 1; grid-row: 1 / span 2; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--paper-2); border: 1px solid var(--line); color: var(--ink); font-family: var(--font-mono); font-size: 12.5px; font-weight: 600; }
+.fset-body { min-width: 0; }
+.fgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+.fgrid + .field--full { margin-top: 22px; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field--full { grid-column: 1 / -1; }
+.field[hidden], .rstep[hidden] { display: none; }
+.field label, .flabel { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.field > label > b, .flabel > b { color: #C43A2F; font-weight: 700; }
+.field label small { font-weight: 400; color: var(--muted-2); }
+/* Campos suaves: fondo gris sin borde, borde negro al enfocar */
+.field input, .field select { height: 46px; padding: 0 14px; border: 1px solid transparent; border-radius: 12px; background: var(--paper-2); font: inherit; font-size: 14.5px; color: var(--ink); width: 100%; transition: border-color .15s, background .15s, box-shadow .15s; }
+.field input:hover, .field select:hover { background-color: var(--paper-3); }
+.field select { appearance: none; -webkit-appearance: none; padding-right: 36px; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233C444C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>"); background-repeat: no-repeat; background-position: right 12px center; background-size: 14px; cursor: pointer; }
+.field select:invalid { color: var(--muted-2); }
+/* Las opciones desplegadas heredaban el gris del placeholder (Luis, 23 sep: "no se ve muy bien"): tinta para las opciones, gris solo para la de "Selecciona" */
+.field select option { color: var(--ink); background: #fff; }
+.field select option[disabled] { color: var(--muted-2); }
+.field input::placeholder { color: var(--muted-2); }
+.field input:focus, .field select:focus { outline: 0; background-color: #fff; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(93, 203, 222, .18); }
+.field.is-invalid input, .field.is-invalid select { background-color: #fff; border-color: #C43A2F; box-shadow: 0 0 0 3px rgba(196, 58, 47, .12); }
+.fhint { font-size: 12.5px; color: var(--muted); }
+.pw { position: relative; display: flex; }
+.pw input { padding-right: 84px; }
+.pw-toggle { position: absolute; right: 7px; top: 7px; height: 32px; padding: 0 12px; border: 0; border-radius: 8px; background: #fff; font: inherit; font-size: 12.5px; font-weight: 600; color: var(--ink); cursor: pointer; box-shadow: var(--shadow-card); }
+.pw-toggle:hover { background: var(--paper-3); }
+/* Tipo de usuario como tarjetas seleccionables */
+.choice { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 4px; }
+.choice-card { position: relative; display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; border: 1px solid transparent; border-radius: 14px; background: var(--paper-2); cursor: pointer; transition: border-color .2s, background .2s; }
+.choice-card:hover { border-color: var(--ink-soft); }
+.choice-card input { position: absolute; opacity: 0; width: 0; height: 0; }
+.choice-body b { display: block; font-size: 15px; font-weight: 600; }
+.choice-body small { display: block; font-size: 13px; line-height: 1.45; color: var(--muted); margin-top: 3px; }
+.choice-mark { width: 20px; height: 20px; border-radius: 50%; border: 1.5px solid var(--line-strong); flex: none; margin-left: auto; position: relative; transition: border-color .15s; }
+.choice-mark::after { content: ''; position: absolute; inset: 4px; border-radius: 50%; background: var(--ink); transform: scale(0); transition: transform .15s; }
+.choice-card:has(input:checked) { border-color: var(--ink); background: #fff; }
+.choice-card:has(input:checked) .choice-mark { border-color: var(--ink); }
+.choice-card:has(input:checked) .choice-mark::after { transform: scale(1); }
+.choice-card:has(input:focus-visible) { box-shadow: 0 0 0 4px rgba(93, 203, 222, .18); }
+.choice.is-invalid .choice-card { border-color: #C43A2F; }
+.form-foot { display: flex; flex-direction: column; gap: 18px; padding: 28px 0 0; border-top: 1px solid var(--line); }
+.accept-check--inline { margin: 0; padding: 0; border: 0; font-weight: 500; font-size: 14px; color: var(--ink-soft); }
+.accept-check--inline:has(input:checked) { background: transparent; }
+.accept-check--inline a { font-weight: 600; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.form-actions { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.form-actions [data-back] .icon { transform: rotate(180deg); }
+.form-error { font-size: 13.5px; font-weight: 600; color: #C43A2F; }
+
+/* ---------- Paso 3 ---------- */
+.done { max-width: 640px; margin: 24px auto 40px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.done-ico { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--ink); color: #fff; margin-bottom: 8px; }
+.done-ico .icon { width: 28px; height: 28px; stroke-width: 2.5; }
+.done .page-lead { text-align: center; }
+.done .page-lead b { color: var(--ink); }
+.done-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; margin: 18px 0 22px; text-align: left; }
+.done-steps div { padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: #fff; }
+.done-steps b { display: block; font-size: 14px; font-weight: 600; }
+.done-steps small { display: block; font-size: 12.5px; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.done .form-actions { justify-content: center; }
+
+@media (max-width: 1024px) {
+  .terms-hero { height: auto; min-height: 300px; padding: 26px 22px; }
+  .terms-hero .intro-badge { top: 16px; right: 16px; }
+  .tsec-list--cols { grid-template-columns: 1fr; }
+  .terms-accept .btn { width: 100%; }
+  .fset { gap: 18px; padding: 24px 0 28px; }
+  .stepper { grid-template-columns: 1fr; gap: 6px; }
+  .step small { display: none; }
+  .step { padding: 10px 12px; }
+}
+@media (max-width: 767px) {
+  .fgrid, .choice, .done-steps { grid-template-columns: 1fr; }
+  .form-actions { flex-direction: column-reverse; align-items: stretch; }
+  .form-actions .btn { justify-content: center; }
+}
