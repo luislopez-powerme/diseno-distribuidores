@@ -1,106 +1,109 @@
 /* =====================================================================
-   Ficha de producto ATESS (25 sep 2026). Plantilla propia, distinta a la de
-   EcoFlow: la anatomía y el lenguaje visual vienen de la ficha oficial de
-   atesspower.com — fondo negro, kicker gris, titular enorme en el rojo de la
-   marca, foto del equipo sobre negro, franja de características y tabla de
-   "Descripción general". El header y el footer del portal siguen en blanco.
+   Ficha de producto ATESS (25 sep 2026, v2). Usa la paleta del portal
+   (blanco y alto contraste) y deja el rojo de ATESS (#BF2821) solo como
+   acento: logo de la marca, kickers, línea superior de las características
+   y detalles. La v1 tenía fondo negro copiado del sitio oficial y Luis la
+   rechazó. La diferencia con las fichas EcoFlow está en el logo, los
+   acentos y la composición invertida (foto a la derecha), no en el fondo.
+   Las descripciones siguen el tratamiento de .desc de producto.css.
    ===================================================================== */
 
-.af-page { --af-red: #BF2821; --af-ink: #060606; --af-ink-2: #101112; --af-line: rgba(255, 255, 255, .14);
-           --af-text: rgba(255, 255, 255, .72); padding-bottom: 0; }
+.af-page { --af-red: #BF2821; --af-red-soft: #FCF2F2; padding-bottom: 0; }
+.af-wrap { width: min(1240px, 100% - 2 * clamp(24px, 5vw, 96px)); margin-inline: auto; }
+
 /* .crumbs vive en paginas.css/categoria.css, que esta ficha no carga: se repiten aquí */
-.af-page .crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; padding: 14px 0 12px; font-size: 12px; color: var(--muted); }
+.af-page .crumbs { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; padding: 14px 0 10px; font-size: 12px; color: var(--muted); }
 .af-page .crumbs a:hover { color: var(--ink); }
 .af-page .crumbs .sep { color: var(--line-strong); }
 .af-page .crumbs [aria-current] { color: var(--ink-soft); }
 
-/* ---------- Hero ---------- */
-.af-hero { background: var(--af-ink); color: #fff; padding: 56px 0 64px; }
-.af-hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.af-brand { display: inline-flex; align-items: center; height: 24px; padding: 0 11px; border-radius: 999px; background: var(--af-red); color: #fff; font-family: var(--font-display); font-size: 10.5px; font-weight: 300; letter-spacing: .18em; }
-.af-kicker { display: block; margin: 18px 0 6px; font-size: 15px; color: var(--af-text); }
-.af-title { font-size: clamp(38px, 5vw, 68px); font-weight: 700; letter-spacing: -.03em; line-height: 1.02; color: var(--af-red); }
-.af-lead { margin-top: 18px; max-width: 54ch; font-size: clamp(15px, 1.2vw, 17px); line-height: 1.6; color: var(--af-text); }
-.af-hero-media { margin: 0; display: flex; justify-content: center; }
-.af-hero-media img { width: 100%; max-width: 430px; height: auto; filter: drop-shadow(0 40px 60px rgba(0, 0, 0, .8)); }
+/* ---------- Cabecera: info a la izquierda, equipo a la derecha ---------- */
+.af-hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .92fr); gap: clamp(36px, 5vw, 76px); align-items: center; padding: 8px 0 44px; }
+.af-brand { display: flex; align-items: center; gap: 12px; }
+.af-brand img { height: 26px; width: auto; display: block; }
+.af-brand span { padding-left: 12px; border-left: 1px solid var(--line-strong); font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.af-title { margin-top: 18px; font-size: clamp(32px, 3.6vw, 46px); font-weight: 600; letter-spacing: -.03em; line-height: 1.06; color: var(--ink); }
+.af-sub { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.af-sub b { color: var(--ink); font-family: var(--font-mono); font-size: 13px; font-weight: 600; }
+.af-lead { margin-top: 16px; max-width: 56ch; font-size: 15.5px; line-height: 1.6; color: var(--ink-soft); }
 
-/* Bloque de compra: estos equipos sí llevan precio de distribuidor (decisión de Luis, 25 sep) */
-.af-buy { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--af-line); }
-.af-price-label { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--af-text); }
-.af-price b { display: block; margin-top: 8px; font-size: clamp(30px, 3vw, 40px); font-weight: 700; letter-spacing: -.02em; line-height: 1; color: #fff; }
-.af-price b small { font-size: 15px; font-weight: 500; color: var(--af-text); margin-left: 10px; letter-spacing: 0; }
-.af-price-note { display: block; margin-top: 10px; max-width: 52ch; font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, .5); }
-.af-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
-.af-qty { display: inline-flex; align-items: center; height: 50px; border: 1px solid var(--af-line); border-radius: 999px; background: var(--af-ink-2); }
-.af-qty button { width: 44px; height: 100%; background: none; border: 0; color: #fff; font-size: 18px; cursor: pointer; border-radius: 999px; }
+.af-media { margin: 0; display: flex; align-items: center; justify-content: center; padding: 4%; border-radius: var(--r-lg); background: var(--paper-2); aspect-ratio: 1 / 1; }
+.af-media img { max-width: 78%; max-height: 92%; width: auto; height: auto; }
+
+/* Precio: estos equipos sí llevan precio de distribuidor (decisión de Luis, 25 sep) */
+.af-buy { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.af-price-label { font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.af-price b { display: block; margin-top: 8px; font-size: clamp(30px, 3vw, 40px); font-weight: 600; letter-spacing: -.02em; line-height: 1; color: var(--ink); }
+.af-price b small { font-size: 15px; font-weight: 500; color: var(--muted); margin-left: 10px; letter-spacing: 0; }
+.af-price-note { display: block; margin-top: 10px; max-width: 54ch; font-size: 12.5px; line-height: 1.5; color: var(--muted); }
+.af-actions { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.af-qty { display: inline-flex; align-items: center; height: 48px; border: 1px solid var(--line-strong); border-radius: 12px; background: #fff; }
+.af-qty button { width: 42px; height: 100%; background: none; border: 0; color: var(--ink); font-size: 18px; cursor: pointer; }
 .af-qty button:hover { color: var(--af-red); }
-.af-qty input { width: 46px; height: 100%; border: 0; background: none; color: #fff; text-align: center; font: inherit; font-size: 15px; font-weight: 600; -moz-appearance: textfield; }
+.af-qty input { width: 44px; height: 100%; border: 0; background: none; color: var(--ink); text-align: center; font: inherit; font-size: 15px; font-weight: 600; -moz-appearance: textfield; }
 .af-qty input::-webkit-outer-spin-button, .af-qty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
-/* botón píldora blanco con flecha, como el "Product Inquiry" de la ficha oficial */
-.af-cart { height: 50px; padding: 0 12px 0 26px; gap: 14px; border-radius: 999px; background: #fff; color: var(--af-ink); font-size: 15px; font-weight: 700; border: 0; }
-.af-cart .icon { width: 34px; height: 34px; padding: 9px; border-radius: 50%; background: var(--af-ink); color: #fff; stroke-width: 2.4; transition: transform .3s var(--ease-out); }
-.af-cart:hover { background: #fff; }
+.af-cart { flex: 1; min-width: 240px; height: 48px; justify-content: center; gap: 10px; border-radius: 12px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 600; border: 0; }
+.af-cart:hover { background: var(--ink-2); }
+.af-cart .icon { width: 16px; height: 16px; transition: transform .3s var(--ease-out); }
 .af-cart:hover .icon { transform: translateX(3px); }
-.af-meta { display: flex; gap: 32px; flex-wrap: wrap; margin-top: 24px; }
-.af-meta dt { font-family: var(--font-display); font-size: 10.5px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .45); }
-.af-meta dd { margin: 5px 0 0; font-size: 14px; font-weight: 600; color: #fff; font-family: var(--font-mono); }
-.af-stock { color: #46D07E !important; font-family: var(--font-body) !important; }
-.af-stock::before { content: ''; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: currentColor; margin-right: 7px; vertical-align: middle; }
 
-/* ---------- Encabezados de sección ---------- */
-.af-head { max-width: 640px; margin-bottom: 34px; }
-.af-head--center { margin-left: auto; margin-right: auto; text-align: center; }
-.af-eyebrow { display: block; font-family: var(--font-display); font-size: 11.5px; font-weight: 300; letter-spacing: .18em; text-transform: uppercase; color: var(--af-red); margin-bottom: 10px; }
-.af-head h2 { font-size: clamp(26px, 2.6vw, 36px); font-weight: 600; letter-spacing: -.025em; line-height: 1.15; }
+/* Tres garantías del portal, con el icono en rojo ATESS */
+.af-perks { list-style: none; margin: 20px 0 0; padding: 16px 0 0; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.af-perks li { display: flex; align-items: center; gap: 10px; padding: 2px 14px; border-left: 1px solid var(--line); font-size: 12.5px; font-weight: 500; line-height: 1.3; color: var(--ink-soft); }
+.af-perks li:first-child { border-left: 0; padding-left: 0; }
+.af-perks .icon { flex: none; width: 34px; height: 34px; padding: 8px; border-radius: 50%; background: var(--af-red-soft); color: var(--af-red); stroke-width: 1.9; }
+
+/* ---------- Encabezados de sección (mismo patrón que .desc de EcoFlow) ---------- */
+.af-sec { border-top: 1px solid var(--line); padding: 40px 0 8px; }
+.af-head { max-width: 62ch; margin-bottom: 26px; }
+.af-eyebrow { display: block; font-family: var(--font-display); font-size: 11px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--af-red); margin-bottom: 8px; }
+.af-head h2 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.af-head p { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
 
 /* ---------- Características ---------- */
-.af-feats { background: var(--af-ink-2); color: #fff; padding: 64px 0 68px; border-top: 1px solid var(--af-line); }
-.af-feat-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 36px; }
-.af-feat { padding-top: 20px; border-top: 2px solid var(--af-red); }
-.af-feat h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; line-height: 1.3; }
-.af-feat p { margin-top: 9px; font-size: 14.5px; line-height: 1.55; color: var(--af-text); }
+.af-feat-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px 32px; }
+.af-feat { padding-top: 16px; border-top: 2px solid var(--af-red); }
+.af-feat h3 { font-size: 18px; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
+.af-feat p { margin-top: 8px; font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
 
-/* ---------- Descripción general ---------- */
-.af-specs { background: var(--af-ink); color: #fff; padding: 64px 0 72px; }
-.af-specs-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
-.af-specs-copy h2 { font-size: clamp(24px, 2.4vw, 32px); font-weight: 700; letter-spacing: -.02em; color: var(--af-red); margin-bottom: 22px; }
+/* ---------- Especificaciones ---------- */
+.af-specs-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: clamp(28px, 4vw, 56px); align-items: start; }
 .af-spec-list { margin: 0; }
-.af-spec { display: grid; grid-template-columns: minmax(0, 260px) minmax(0, 1fr); gap: 24px; padding: 15px 0; border-top: 1px solid var(--af-line); }
-.af-spec:last-child { border-bottom: 1px solid var(--af-line); }
-.af-spec dt { font-size: 14.5px; color: var(--af-text); }
-.af-spec dd { margin: 0; font-size: 14.5px; font-weight: 600; color: #fff; line-height: 1.5; }
-.af-note { margin-top: 18px; font-size: 12.5px; color: rgba(255, 255, 255, .42); max-width: 60ch; }
-.af-specs-media { margin: 0; display: flex; justify-content: center; }
-.af-specs-media img { width: 100%; max-width: 300px; height: auto; filter: drop-shadow(0 30px 50px rgba(0, 0, 0, .75)); }
+.af-spec { display: grid; grid-template-columns: minmax(0, 270px) minmax(0, 1fr); gap: 24px; padding: 13px 0; border-top: 1px solid var(--line); }
+.af-spec:last-child { border-bottom: 1px solid var(--line); }
+.af-spec dt { font-size: 14px; color: var(--muted); }
+.af-spec dd { margin: 0; font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+.af-note { margin-top: 16px; font-size: 12px; line-height: 1.5; color: var(--muted); max-width: 62ch; }
+.af-specs-media { margin: 0; display: flex; align-items: center; justify-content: center; padding: 8%; border-radius: var(--r-lg); background: var(--paper-2); }
+.af-specs-media img { max-width: 100%; height: auto; }
 
 /* ---------- Productos relacionados ---------- */
-.af-related { background: var(--af-ink-2); color: #fff; padding: 64px 0 72px; border-top: 1px solid var(--af-line); }
-.af-rel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
-.af-rel { display: flex; flex-direction: column; padding: 24px; border: 1px solid var(--af-line); border-radius: var(--r-lg); background: var(--af-ink); transition: border-color .25s, transform .35s var(--ease-out); }
-.af-rel:hover { border-color: var(--af-red); transform: translateY(-4px); }
-.af-rel-media { height: 168px; display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
-.af-rel-media img { max-height: 100%; max-width: 74%; width: auto; }
-.af-rel-type { font-family: var(--font-display); font-size: 10.5px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--af-text); }
-.af-rel h3 { margin-top: 8px; font-size: 17px; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
-.af-rel-sku { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 11.5px; color: rgba(255, 255, 255, .42); }
+.af-rel-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.af-rel { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--r-lg); background: #fff; overflow: hidden; transition: border-color .2s, box-shadow .3s, transform .35s var(--ease-out); }
+.af-rel:hover { border-color: var(--line-strong); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.af-rel-media { height: 168px; display: flex; align-items: center; justify-content: center; background: var(--paper-2); }
+.af-rel-media img { max-height: 76%; max-width: 72%; width: auto; }
+.af-rel-body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.af-rel-type { font-family: var(--font-display); font-size: 10.5px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--af-red); }
+.af-rel h3 { margin-top: 8px; font-size: 16.5px; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
+.af-rel-sku { display: block; margin-top: 6px; font-family: var(--font-mono); font-size: 11.5px; color: var(--muted-2); }
 .af-rel-price { margin-top: 14px; }
-.af-rel-price b { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
-.af-rel-price small { font-size: 12px; color: var(--af-text); margin-left: 7px; }
-.af-rel-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 16px; font-size: 14px; font-weight: 600; color: #fff; }
+.af-rel-price b { font-size: 19px; font-weight: 600; letter-spacing: -.01em; color: var(--ink); }
+.af-rel-price small { font-size: 12px; color: var(--muted); margin-left: 6px; }
+.af-rel-link { display: inline-flex; align-items: center; gap: 7px; margin-top: 14px; font-size: 13.5px; font-weight: 600; color: var(--ink); }
 .af-rel-link .icon { width: 15px; height: 15px; color: var(--af-red); transition: transform .3s var(--ease-out); }
 .af-rel:hover .af-rel-link .icon { transform: translateX(4px); }
 
 /* ---------- Cierre ---------- */
-.af-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: center; margin: 56px 0 64px; padding: 38px 42px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--paper-2); }
-.af-cta h2 { font-size: 26px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
-.af-cta p { margin-top: 8px; font-size: 15px; line-height: 1.55; color: var(--ink-soft); max-width: 56ch; }
+.af-cta { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 26px; align-items: center; margin: 44px 0 56px; padding: 32px 36px; border-radius: var(--r-lg); background: var(--paper-2); border-left: 3px solid var(--af-red); }
+.af-cta h2 { font-size: 24px; font-weight: 600; letter-spacing: -.02em; line-height: 1.15; }
+.af-cta p { margin-top: 8px; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); max-width: 56ch; }
 .af-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
 @media (max-width: 1024px) {
-  .af-hero { padding: 40px 0 48px; }
-  .af-hero-grid, .af-specs-grid { grid-template-columns: 1fr; gap: 32px; }
-  .af-hero-media { order: -1; }
-  .af-hero-media img { max-width: 320px; }
+  .af-hero, .af-specs-grid { grid-template-columns: 1fr; gap: 28px; }
+  .af-media { max-width: 460px; }
+  .af-specs-media { max-width: 320px; }
   .af-feat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .af-rel-grid { grid-template-columns: 1fr 1fr; }
   .af-rel:last-child { display: none; }
@@ -110,9 +113,10 @@
   .af-feat-grid, .af-rel-grid { grid-template-columns: 1fr; }
   .af-rel:last-child { display: flex; }
   .af-spec { grid-template-columns: 1fr; gap: 4px; }
+  .af-perks { grid-template-columns: 1fr; gap: 12px; }
+  .af-perks li { border-left: 0; padding: 0; }
   .af-actions { flex-direction: column; align-items: stretch; }
   .af-qty { align-self: flex-start; }
-  .af-cart { justify-content: space-between; }
-  .af-cta { padding: 26px 22px; margin-bottom: 48px; }
-  .af-cta h2 { font-size: 22px; }
+  .af-cta { padding: 24px 22px; margin-bottom: 44px; }
+  .af-cta h2 { font-size: 21px; }
 }
