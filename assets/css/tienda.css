@@ -20,7 +20,7 @@
 .cat-side-head .icon { width: 16px; height: 16px; stroke-width: 2.2; }
 /* Bloques por marca (24 sep): logo en negro + descriptor en la tipografía de etiquetas */
 /* Bloques por marca (24 sep): solo el nombre en texto (Luis: los logos se veían aplastados); ATESS en su rojo #B91012 */
-.cat-side-brand { display: flex; align-items: center; gap: 8px; padding: 7px 14px 1px; font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: -.005em; color: var(--ink); line-height: 1.25; }  /* Commuters SemiBold como el encabezado del panel; la ABChanel se veía delgada y estirada a este tamaño */
+.cat-side-brand { display: flex; align-items: center; gap: 8px; padding: 7px 14px 1px; font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: -.005em; color: var(--ink); line-height: 1.25; }  /* mismo peso que el encabezado del panel (--font-body, hoy Geist); la ABChanel se veía delgada y estirada a este tamaño */
 .cat-side-brand--atess { color: #B91012; border-top: 1px solid var(--line); margin-top: 2px; padding-top: 7px; }
 .cat-side ul { list-style: none; margin: 0; padding: 2px 0; flex: 1; overflow: auto; }
 .cat-side ul.cat-side-list--atess { flex: none; padding-bottom: 4px; }

@@ -10,13 +10,33 @@
    ===================================================================== */
 
 /* ---------- Tipografías de marca ----------
-   Commuters Sans DEMO (Fontspring): casi toda la puntuación ASCII y el dígito 4
-   vienen sustituidos por el marcador "DEMO" (verificado glifo por glifo:
-   ! " # $ % & ' ( ) * + - / 4 < = > @ [ \ ] ^ _ ` { | } ~). Por eso el
-   unicode-range solo deja pasar letras, dígitos 0-3 y 5-9, espacio y , . : ; ?
-   y todo lo demás lo dibuja Outfit (Google Fonts). Al comprar la licencia basta
-   quitar los unicode-range. ABChanel Couture queda declarada pero ya no se usa en
-   esta página (los títulos siguen el estilo Sora/Figtree de Syscom). */
+   ⚠️ Commuters Sans está DESACTIVADA como tipografía de cuerpo (28 sep 2026).
+
+   La DEMO de Fontspring solo contiene **97 glifos, todos ASCII**: no trae
+   ninguna vocal acentuada, ni la ñ, ni ¿ ni ¡ (verificado leyendo el cmap de
+   los cinco archivos). Como el navegador solo puede recurrir al siguiente
+   tipo de la lista carácter por carácter, cada á é í ó ú ñ se dibujaba en
+   Outfit mientras el resto de la palabra seguía en Commuters: "más" y
+   "Capacitación" salían con dos tipografías mezcladas. Solo en el home había
+   162 caracteres así (í×52, ó×50, á×35, é×19, ñ×5, ú×1).
+
+   Además, de los glifos que sí trae, casi toda la puntuación y el dígito 4
+   vienen sustituidos por el marcador "DEMO" (! " # $ % & ' ( ) * + - / 4
+   < = > @ [ \ ] ^ _ ` { | } ~), que es lo que tapan los unicode-range.
+
+   El cuerpo pasó primero a Outfit, pero a Luis se le hizo genérica, así que
+   desde el 28 de septiembre es **Geist**: una grotesca suiza de 2024, con el
+   juego completo de acentos y la ñ. Es la misma que ya se había aprobado para
+   la cabecera, así que hoy todo el sitio va en una sola tipografía de cuerpo.
+   Geist hace de sustituto libre de Helvetica Now Display, que es la de cuerpo
+   en el Manual para Redes de julio 2026. Outfit ya no se usa en ningún lado.
+
+   AL COMPRAR LA LICENCIA: devolver 'Commuters Sans' al principio de
+   --font-body y quitar los unicode-range de sus @font-face. Las reglas siguen
+   abajo justo para eso; hoy no se descargan porque nada las usa.
+
+   ABChanel Couture (--font-display, etiquetas en caja alta) sí tiene el juego
+   completo: 321 glifos, sin faltantes en español. No se toca. */
 @font-face {
   font-family: 'ABChanel Couture';
   src: url('../fonts/ABChanelCouture-Light.ttf') format('truetype');
@@ -67,8 +87,8 @@
   --cyan-text: #1F7EA6;        /* Glacial blue oscurecido para texto legible sobre blanco */
   --ok: #17A96A;
 
-  --font-body: 'Commuters Sans', 'Outfit', 'Segoe UI', Arial, sans-serif;
-  --font-display: 'ABChanel Couture', 'Outfit', 'Segoe UI', Arial, sans-serif; /* etiquetas en caps (opción C, 21 sep) */
+  --font-body: 'Geist', 'Segoe UI', Arial, sans-serif;   /* Commuters Sans DEMO no tiene acentos; ver nota arriba */
+  --font-display: 'ABChanel Couture', 'Geist', 'Segoe UI', Arial, sans-serif; /* etiquetas en caps (opción C, 21 sep) */
   --font-mono: ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
 
   --ease-out: cubic-bezier(.22, 1, .36, 1);
@@ -205,6 +225,9 @@ strong, b { font-weight: 600; }
 .nav-link:hover .icon { opacity: 1; }
 .nav-link:hover::after, .nav-item.is-open > .nav-link::after { transform: scaleX(1); }
 .nav-products { font-weight: 600; color: var(--ink); padding-left: 0; }
+/* Geist tiene la x más alta que Commuters: a 13.8 px la barra pesa igual
+   que antes y no se ensancha (venía de menu-tipo.css, 25 sep). */
+.nav-link { font-size: 13.8px; letter-spacing: .002em; }
 .nav-products::after { left: 0; }
 .nav-link .chev { width: 13px; height: 13px; opacity: .7; transition: transform .3s; }
 .nav-item.is-open .chev { transform: rotate(180deg); }
@@ -787,21 +810,21 @@ body.has-modal { overflow: hidden; }
 /* Panel que se revela: sube desde abajo con blur, y sus hijos entran escalonados (0.1 s) */
 .pcard-reveal { position: absolute; inset: 0; z-index: 3; display: flex; flex-direction: column; justify-content: flex-end; background: rgba(255, 255, 255, .96); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transform: translateY(100%); opacity: 0; filter: blur(4px); pointer-events: none; transition: transform .55s var(--spring), opacity .35s var(--ease-out), filter .4s var(--ease-out); }
 .pcard:hover .pcard-reveal, .pcard:focus-within .pcard-reveal { transform: none; opacity: 1; filter: blur(0); pointer-events: auto; }
-.pcard-reveal-in { display: flex; flex-direction: column; gap: 16px; padding: 24px; }
+.pcard-reveal-in { display: flex; flex-direction: column; gap: 12px; padding: 20px; }
 .pr-item { opacity: 0; transform: translateY(20px) scale(.95); transition: opacity .4s var(--ease-out), transform .55s var(--spring); }
 .pcard:hover .pr-item, .pcard:focus-within .pr-item { opacity: 1; transform: none; }
 .pcard:hover .pr-item:nth-child(1), .pcard:focus-within .pr-item:nth-child(1) { transition-delay: .1s; }
 .pcard:hover .pr-item:nth-child(2), .pcard:focus-within .pr-item:nth-child(2) { transition-delay: .2s; }
 .pcard:hover .pr-item:nth-child(3), .pcard:focus-within .pr-item:nth-child(3) { transition-delay: .3s; }
-.pr-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-.pr-item p { font-size: 13.5px; line-height: 1.55; color: var(--muted); }
-.pr-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.pr-specs div { background: var(--paper-2); border-radius: 10px; padding: 10px 8px; text-align: center; font-size: 12px; color: var(--muted); }
-.pr-specs b { display: block; font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
-.pr-actions { display: flex; flex-direction: column; gap: 10px; }
-.btn-pill--block { width: 100%; justify-content: center; height: 48px; font-size: 15px; }
+.pr-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+.pr-item p { font-size: 13px; line-height: 1.5; color: var(--ink-soft); }
+.pr-specs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.pr-specs div { background: var(--paper-2); border-radius: 8px; padding: 7px 6px; text-align: center; font-size: 10.5px; line-height: 1.25; color: var(--muted); }
+.pr-specs b { display: block; font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 1px; letter-spacing: -.01em; }
+.pr-actions { display: flex; flex-direction: column; gap: 8px; }
+.btn-pill--block { width: 100%; justify-content: center; height: 42px; font-size: 14px; }
 .btn-pill--block .icon { width: 16px; height: 16px; }
-.btn-pill--outline { height: 40px; background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+.btn-pill--outline { height: 36px; background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
 .btn-pill--outline:hover { background: var(--paper-2); border-color: var(--ink-soft); }
 @media (hover: none) {
   .sellers .pcard:hover { transform: none; }
@@ -816,7 +839,7 @@ body.has-modal { overflow: hidden; }
   .sellers { gap: 16px; }
   .pcard-media { height: 200px; }
   .pcard-body { padding: 16px 18px 18px; }
-  .pcard-reveal-in { padding: 18px; gap: 12px; }
+  .pcard-reveal-in { padding: 16px; gap: 10px; }
 }
 @media (max-width: 767px) {
   .sellers { gap: 14px; padding-bottom: 24px; }
