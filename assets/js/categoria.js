@@ -1,6 +1,9 @@
 /* Listado de categoría (categoria.html) y resultados de búsqueda (buscar.html): filtrado, orden, chips activos y
-   paginación en el cliente. Lee ?q= (búsqueda) y ?serie= (categoría) de la URL. La búsqueda ignora acentos y
-   mayúsculas ("bateria" encuentra "Batería"). Los rangos de capacidad y potencia coinciden con build_categoria.py. */
+   paginación en el cliente. Lee ?q= (búsqueda), ?serie= (categoría EcoFlow), ?marca= y ?linea= (ATESS) de la URL.
+   La búsqueda ignora acentos y mayúsculas ("bateria" encuentra "Batería"). Los rangos de capacidad y potencia
+   coinciden con build_categoria.py.
+   29 sep 2026 — catálogo multimarca (EcoFlow + ATESS): el grupo "Marca" filtra de verdad y los grupos del aside
+   marcados con data-brand se muestran solo cuando esa marca está en juego (sin marca elegida se ven todos). */
 (function () {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -10,6 +13,7 @@
   const aside = $('.filters');
   const sortMain = $('.fgroup--sort .fselect'), sortMirror = $('[data-sort-mirror]');
   const chips = $('[data-chips]'), count = $('[data-count]'), empty = $('[data-empty]'), pager = $('[data-pager]');
+  const fdim = $('[data-fdim]'), fcount = $('[data-fcount]'), fbadge = $('[data-fbadge]');
   const PER_PAGE = 12;
   const WH = { 'lt500': [0, 499], '500-1000': [500, 1000], '1000-2000': [1001, 2048], '2000-4000': [2049, 4096], 'gt4000': [4097, 1e9] };
   const W = { 'lt600': [0, 599], '600-1800': [600, 1800], '1800-3600': [1801, 3600], 'gt3600': [3601, 1e9] };
@@ -17,17 +21,31 @@
   const norm = (s) => (s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
   let page = 1;
 
-  /* URL: ?q=texto (búsqueda) · ?serie=Serie RIVER (categoría) · ?nuevo=1 (novedades) */
+  /* URL: ?q=texto (búsqueda) · ?serie=Serie RIVER (categoría) · ?marca=ATESS · ?linea=… · ?nuevo=1 (novedades) */
   const params = new URLSearchParams(location.search);
   const rawQ = (params.get('q') || '').trim();
   const query = norm(rawQ);
   tiles.forEach((t) => { t.dataset.norm = norm(t.dataset.name); });
-  const serie = params.get('serie');
+  let serie = params.get('serie');
+  let marca = params.get('marca');
+  const linea = params.get('linea');
   const onlyNew = params.get('nuevo') === '1';
+  const tick = (name, value) => { const cb = $(`input[name="${name}"][value="${value}"]`, aside); if (cb) { cb.checked = true; return true; } return false; };
   if (onlyNew) $('input[name="new"]', aside).checked = true;
-  if (serie) { const cb = $(`input[name="serie"][value="${serie}"]`, aside); if (cb) cb.checked = true; }
+  if (serie) tick('serie', serie);
+  if (marca) tick('marca', marca);
+  if (linea) { tick('linea', linea); if (!marca) tick('marca', 'ATESS'); }
+  /* ?cat= viene del selector de categoría del buscador del header: puede ser una marca (ATESS) o una serie.
+     Si no corresponde a ninguna casilla (p. ej. "Accesorios", que no está en el catálogo de muestra) se ignora
+     y la búsqueda se hace sobre todo el catálogo. */
+  const cat = params.get('cat');
+  if (cat) $$('.search-cat').forEach((sel) => { sel.value = cat; });   // el selector del header conserva la categoría elegida
+  if (cat && !serie && !marca) {
+    if (tick('marca', cat)) marca = cat;
+    else if (tick('serie', cat)) serie = cat;
+  }
   const title = $('[data-title]'), crumb = $('[data-crumb]');
-  if (query || serie || onlyNew) title.removeAttribute('data-default');
+  if (query || serie || marca || linea || onlyNew) title.removeAttribute('data-default');
   if (query) {
     title.textContent = `Resultados para “${rawQ}”`;
     crumb.textContent = 'Búsqueda';
@@ -37,6 +55,12 @@
   } else if (serie) {
     title.textContent = serie; crumb.textContent = serie;
     document.title = `${serie} · EcoFlow · PowerMe Distribuidores`;
+  } else if (linea) {
+    title.textContent = linea; crumb.textContent = linea;
+    document.title = `${linea} · ATESS · PowerMe Distribuidores`;
+  } else if (marca) {
+    title.textContent = marca; crumb.textContent = marca;
+    document.title = `${marca} · PowerMe Distribuidores`;
   } else if (onlyNew) {
     title.textContent = 'Nuevos lanzamientos'; crumb.textContent = 'Nuevos';
     document.title = 'Nuevos lanzamientos · EcoFlow · PowerMe Distribuidores';
@@ -44,7 +68,9 @@
 
   const inRange = (v, r) => v !== '' && +v >= r[0] && +v <= r[1];
   const state = () => ({
+    marca: $$('input[name="marca"]:checked', aside).map(i => i.value),
     serie: $$('input[name="serie"]:checked', aside).map(i => i.value),
+    linea: $$('input[name="linea"]:checked', aside).map(i => i.value),
     wh: $$('input[name="wh"]:checked', aside).map(i => i.value),
     w: $$('input[name="w"]:checked', aside).map(i => i.value),
     isNew: $('input[name="new"]', aside).checked,
@@ -53,7 +79,11 @@
 
   const matches = (t, s) => {
     if (query && !t.dataset.norm.includes(query)) return false;
+    if (s.marca.length && !s.marca.includes(t.dataset.marca)) return false;
+    /* Serie, capacidad y potencia son facetas de EcoFlow; línea lo es de ATESS. Un producto de la otra marca no las
+       tiene, así que queda fuera en cuanto se usa una de ellas (es lo que se espera al filtrar por serie). */
     if (s.serie.length && !s.serie.includes(t.dataset.serie)) return false;
+    if (s.linea.length && !s.linea.includes(t.dataset.linea || '')) return false;
     if (s.wh.length && !s.wh.some(k => inRange(t.dataset.wh, WH[k]))) return false;
     if (s.w.length && !s.w.some(k => inRange(t.dataset.w, W[k]))) return false;
     if (s.isNew && t.dataset.new !== '1') return false;
@@ -67,16 +97,31 @@
     name: (a, b) => a.dataset.name.localeCompare(b.dataset.name, 'es'),
   };
 
+  /* Los grupos con data-brand solo se ven cuando esa marca está seleccionada (o cuando no hay ninguna). Al ocultarse
+     se destildan para que no quede un filtro activo invisible. */
+  const brandGroups = $$('.fgroup[data-brand]', aside);
+  const syncGroups = (marcas) => {
+    let changed = false;
+    brandGroups.forEach((g) => {
+      const on = !marcas.length || marcas.includes(g.dataset.brand);
+      g.hidden = !on;
+      if (!on) $$('input:checked', g).forEach((i) => { i.checked = false; changed = true; });
+    });
+    return changed;
+  };
+
   const chip = (label, onRemove) => {
     const b = document.createElement('button'); b.type = 'button'; b.className = 'rchip';
     b.innerHTML = `<span>${label}</span><i aria-hidden="true">×</i>`; b.setAttribute('aria-label', `Quitar filtro ${label}`);
     b.addEventListener('click', onRemove); return b;
   };
   const labelOf = (name, value) => { const i = $(`input[name="${name}"][value="${value}"]`, aside); return i ? i.parentElement.querySelector('span:not(.fbox):not(.fknob)').textContent : value; };
+  const uncheck = (name, v) => { const i = $(`input[name="${name}"][value="${v}"]`, aside); if (i) i.checked = false; page = 1; render(); };
   const emptySearchHref = mode === 'search' ? 'buscar.html' : 'categoria.html';
 
   const render = () => {
-    const s = state();
+    let s = state();
+    if (syncGroups(s.marca)) s = state();
     const visible = tiles.filter(t => matches(t, s)).sort(sorters[s.sort]);
     const pages = Math.max(1, Math.ceil(visible.length / PER_PAGE));
     page = Math.min(page, pages);
@@ -89,12 +134,20 @@
 
     chips.innerHTML = '';
     if (query) chips.appendChild(chip(`“${rawQ}”`, () => { location.href = emptySearchHref; }));
-    s.serie.forEach(v => chips.appendChild(chip(v, () => { $(`input[name="serie"][value="${v}"]`, aside).checked = false; page = 1; render(); })));
-    s.wh.forEach(v => chips.appendChild(chip(labelOf('wh', v), () => { $(`input[name="wh"][value="${v}"]`, aside).checked = false; page = 1; render(); })));
-    s.w.forEach(v => chips.appendChild(chip(labelOf('w', v), () => { $(`input[name="w"][value="${v}"]`, aside).checked = false; page = 1; render(); })));
+    s.marca.forEach(v => chips.appendChild(chip(v, () => uncheck('marca', v))));
+    s.serie.forEach(v => chips.appendChild(chip(v, () => uncheck('serie', v))));
+    s.linea.forEach(v => chips.appendChild(chip(v, () => uncheck('linea', v))));
+    s.wh.forEach(v => chips.appendChild(chip(labelOf('wh', v), () => uncheck('wh', v))));
+    s.w.forEach(v => chips.appendChild(chip(labelOf('w', v), () => uncheck('w', v))));
     if (s.isNew) chips.appendChild(chip(LABEL.new, () => { $('input[name="new"]', aside).checked = false; page = 1; render(); }));
     const any = chips.children.length > 0;
     $$('[data-clear]').forEach(b => { b.hidden = !any; });
+
+    /* Hoja de filtros en móvil: el pie dice cuántos productos quedan y la barra cuántos filtros hay puestos
+       (el switch "En existencia" viene encendido de fábrica, así que no cuenta). */
+    const nFiltros = s.marca.length + s.serie.length + s.linea.length + s.wh.length + s.w.length + (s.isNew ? 1 : 0);
+    if (fcount) { fcount.textContent = visible.length; fcount.nextSibling.textContent = visible.length === 1 ? ' producto' : ' productos'; }
+    if (fbadge) { fbadge.textContent = nFiltros; fbadge.hidden = nFiltros === 0; }
 
     pager.innerHTML = '';
     if (pages > 1) {
@@ -118,9 +171,59 @@
     page = 1; render();
   }));
 
+  /* ---------------------------------------------------------------------------
+     Filtros en móvil: barra fija + hoja inferior (opción A, elegida el 30 sep 2026).
+     La hoja es el mismo <aside class="filters"> recolocado por CSS, así que no hay
+     casillas duplicadas y todo lo de arriba sigue funcionando igual.
+     --------------------------------------------------------------------------- */
+  const movil = matchMedia('(max-width: 1024px)');
+  const grupos = $$('.fgroup', aside).filter(g => $('.fhead-btn', g));
+  const abrirGrupo = (g, on) => {
+    g.classList.toggle('is-open', on);
+    $('.fhead-btn', g).setAttribute('aria-expanded', String(on));
+  };
+  /* De inicio se abre Marca; y cualquier grupo que ya traiga un filtro puesto (p. ej. al llegar con ?serie=) */
+  grupos.forEach((g, i) => abrirGrupo(g, i === 1 || !!$('input:checked:not([name="stock"])', g)));
+
+  let sheetOpen = false;
+  const abrirHoja = (on, foco) => {
+    sheetOpen = on;
+    aside.classList.toggle('is-open', on);
+    if (fdim) { fdim.hidden = !on; requestAnimationFrame(() => fdim.classList.toggle('is-on', on)); }
+    document.body.classList.toggle('has-modal', on);
+    if (on && foco === 'orden') {
+      const g = $('.fgroup--sort', aside);
+      abrirGrupo(g, true);
+      g.scrollIntoView({ block: 'start' });
+    }
+    if (on) $('.fsheet-x', aside)?.focus();
+  };
+  $$('[data-fopen]').forEach(b => b.addEventListener('click', () => abrirHoja(true, b.dataset.fopen)));
+  $$('[data-fclose],[data-fapply],[data-fdim]').forEach(b => b.addEventListener('click', () => abrirHoja(false)));
+  aside.addEventListener('click', (e) => {
+    const b = e.target.closest('.fhead-btn');
+    if (!b || !movil.matches) return;
+    const g = b.closest('.fgroup');
+    abrirGrupo(g, !g.classList.contains('is-open'));
+  });
+  $('[data-clear-all]')?.addEventListener('click', () => {
+    $$('input[type="checkbox"]:not([disabled])', aside).forEach(i => { i.checked = i.name === 'stock'; });
+    sortMain.value = sortMirror.value = 'rel';
+    page = 1; render();
+  });
+  addEventListener('keydown', (e) => { if (e.key === 'Escape' && sheetOpen) abrirHoja(false); });
+  /* Al pasar a escritorio la hoja no debe quedarse abierta ni el scroll bloqueado */
+  movil.addEventListener('change', (e) => { if (!e.matches && sheetOpen) abrirHoja(false); });
+
   /* El buscador del header lleva a la página de resultados */
   const form = $('.search'); const input = $('.search input');
-  if (form && input) form.addEventListener('submit', (e) => { e.preventDefault(); const q = input.value.trim(); location.href = q ? `buscar.html?q=${encodeURIComponent(q)}` : 'buscar.html'; });
+  if (form && input) form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const q = input.value.trim();
+    const c = ($('.search-cat', form) || {}).value || '';
+    const qs = [q && `q=${encodeURIComponent(q)}`, c && `cat=${encodeURIComponent(c)}`].filter(Boolean).join('&');
+    location.href = qs ? `buscar.html?${qs}` : 'buscar.html';
+  });
 
   render();
 })();

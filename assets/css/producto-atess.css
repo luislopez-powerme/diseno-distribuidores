@@ -117,6 +117,8 @@
   .af-perks li { border-left: 0; padding: 0; }
   .af-actions { flex-direction: column; align-items: stretch; }
   .af-qty { align-self: flex-start; }
+  /* en columna, flex:1 pone flex-basis:0 sobre la ALTURA y aplastaba el botón a 16 px (30 sep 2026) */
+  .af-cart { flex: none; min-width: 0; }
   .af-cta { padding: 24px 22px; margin-bottom: 44px; }
   .af-cta h2 { font-size: 21px; }
 }

@@ -1,3 +1,39 @@
+/* Copiar el SKU al hacer clic (28 sep). Antes el icono era decorativo y no copiaba nada. */
+document.addEventListener('click', function (e) {
+  const b = e.target.closest('[data-copiar]');
+  if (!b) return;
+  const texto = b.dataset.copiar;
+  const listo = () => {
+    if (b.dataset.previo) return;               // ya está mostrando el aviso
+    b.dataset.previo = b.textContent;
+    b.textContent = 'Copiado';
+    b.classList.add('copiado');
+    setTimeout(() => { b.textContent = b.dataset.previo; delete b.dataset.previo; b.classList.remove('copiado'); }, 1200);
+  };
+  const aLaAntigua = () => {
+    const ta = document.createElement('textarea');
+    ta.value = texto; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); listo(); } catch (err) { /* sin portapapeles: no se avisa nada */ }
+    document.body.removeChild(ta);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(listo, aLaAntigua);
+  } else { aLaAntigua(); }
+});
+
+/* Vista previa con sesión (?sesion=1): muestra lo que ve un distribuidor con su cuenta
+   iniciada. Hoy solo revela las existencias; en Shopify será {% if customer %}. */
+if (new URLSearchParams(location.search).has('sesion')) {
+  document.body.classList.add('sesion');
+  const bar = document.createElement('div');
+  bar.className = 'sesion-bar';
+  bar.innerHTML = '<svg class="icon" aria-hidden="true"><use href="#i-user"/></svg>'
+    + 'Vista previa con sesión iniciada: así ve el catálogo un distribuidor. '
+    + '<a href="' + location.pathname + '">Ver como visitante</a>';
+  document.body.insertBefore(bar, document.body.firstChild);
+}
+
 /* distribuidores.powerme.mx — interacciones del mockup (sin dependencias) */
 (() => {
   document.documentElement.classList.replace('no-js', 'js');

@@ -103,8 +103,10 @@
 .eco-hero-copy small { display: block; font-size: 12.5px; color: rgba(255, 255, 255, .75); margin-top: 3px; }
 .eco-hero-copy strong { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; color: rgba(255, 255, 255, .85); white-space: nowrap; }
 .eco-hero-copy strong .icon { width: 14px; height: 14px; }
-.eco-items { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 20px; min-height: 0; }
-.eco-item { display: flex; flex-direction: column; min-height: 0; color: var(--ink); }
+/* minmax(0,…) + min-width:0: los nombres de los componentes llevan white-space:nowrap y, sin esto, el ancho
+   mínimo del texto estiraba las pistas del grid y sacaba la sección de la pantalla en móvil (30 sep 2026). */
+.eco-items { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr 1fr; gap: 20px; min-width: 0; min-height: 0; }
+.eco-item { display: flex; flex-direction: column; min-width: 0; min-height: 0; color: var(--ink); }
 .eco-img { position: relative; display: block; flex: 1; min-height: 0; border-radius: 12px; overflow: hidden; background: radial-gradient(70% 70% at 50% 100%, #DCE3E8 0%, transparent 70%), linear-gradient(180deg, #F7F9FA 0%, #EEF2F5 100%); }
 .eco-img img { position: absolute; left: 19%; top: 14%; width: 62%; height: 72%; object-fit: contain; filter: drop-shadow(0 10px 12px rgba(12, 12, 12, .18)); transition: transform .5s var(--ease-out); }
 .eco-item:hover .eco-img img { transform: translateY(-4px) scale(1.03); }
@@ -162,7 +164,7 @@
 }
 @media (max-width: 1024px) {
   .usp { grid-template-columns: repeat(2, 1fr); }
-  .eco-grid { grid-template-columns: 1fr; }
+  .eco-grid { grid-template-columns: minmax(0, 1fr); }
   .eco-hero { width: 100%; }
   .eco-img { flex: none; aspect-ratio: 4 / 3; }
   .eco-items { grid-template-rows: auto auto; }
@@ -174,6 +176,10 @@
   .tienda .popcat-img { width: 92px; height: 92px; }
 }
 @media (max-width: 767px) {
+  /* El pie del video era una fila título | 'Inicia sesión para ver precio' y en móvil se encimaban:
+     en columna cada cosa tiene su renglón. 30 sep 2026 */
+  .eco-hero-copy { flex-direction: column; align-items: flex-start; gap: 8px; left: 18px; right: 18px; bottom: 18px; }
+  .eco-hero-copy b { font-size: 18px; }
   .tienda .banner { aspect-ratio: 1 / 1; }
   .tienda .slide::before { background: linear-gradient(0deg, rgba(12, 12, 12, .88) 0%, rgba(12, 12, 12, .45) 50%, rgba(12, 12, 12, .1) 100%); }
   .tienda .slide-copy { left: 20px; right: 20px; bottom: 34px; max-width: none; gap: 10px; }

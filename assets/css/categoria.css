@@ -26,6 +26,9 @@
 .fgroup { padding-bottom: 20px; border-bottom: 1px solid var(--line); }
 .fgroup:last-of-type { border-bottom: 0; }
 .fhead { font-family: var(--font-display); font-size: 12.5px; font-weight: 300; letter-spacing: .16em; text-transform: uppercase; color: var(--ink); margin-bottom: 12px; }
+/* El rótulo del grupo envuelve un <button> porque en móvil es el tirador del acordeón. En escritorio se anula
+   para que siga siendo texto plano: mismo tamaño, mismo color, sin cursor ni flecha. */
+.fhead-btn { display: block; width: 100%; padding: 0; border: 0; background: none; font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; text-align: left; cursor: default; }
 .fselect { width: 100%; height: 38px; padding: 0 34px 0 12px; border: 1px solid var(--line-strong); border-radius: 10px; background: #fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%233C444C' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='m6 9 6 6 6-6'/></svg>") no-repeat right 10px center / 14px; font: inherit; font-size: 13.5px; font-weight: 500; color: var(--ink); appearance: none; -webkit-appearance: none; cursor: pointer; }
 .fselect:focus { outline: 0; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(93, 203, 222, .18); }
 .flist { display: flex; flex-direction: column; gap: 2px; }
@@ -122,4 +125,82 @@
 @media (max-width: 767px) {
   .search-head .cat-title { font-size: 26px; }
   .search-big .btn { padding: 0 14px; }
+}
+
+/* ---------- Catálogo multimarca: EcoFlow + ATESS (29 sep 2026) ----------
+   El filtro "Marca" ya es real (dos casillas) y las dos marcas comparten la
+   cuadrícula, así que la tarjeta ATESS se distingue por el rótulo en el rojo
+   de la marca (#B91012, el mismo de los círculos de categorías y del panel
+   lateral). En el home no hace falta porque ATESS tiene sección propia. */
+.ptile-brand--atess { color: #B91012; }
+.fcheck--atess input:checked + .fbox { background: #B91012; border-color: #B91012; }
+.fcheck--atess input:checked ~ span:not(.fbox) { color: #B91012; }
+.fcheck--atess input:focus-visible + .fbox { box-shadow: 0 0 0 3px rgba(185, 16, 18, .3); }
+
+
+/* =====================================================================
+   FILTROS EN MÓVIL — barra fija + hoja inferior (opción A, 30 sep 2026)
+   Luis eligió este patrón entre las tres de pruebas/filtros-movil.html.
+   Antes el aside se apilaba encima de los resultados: 1,328 px de filtros
+   y dos pantallas de scroll antes del primer producto.
+   La hoja NO duplica el aside: es el mismo elemento, recolocado. Así hay
+   un solo juego de casillas y categoria.js sigue leyendo de un solo sitio.
+   ===================================================================== */
+.fsheet-top, .fsheet-foot, .fbar, .fdim { display: none; }
+.fsheet-body { display: contents; }   /* en escritorio el envoltorio no existe para el layout */
+
+@media (max-width: 1024px) {
+  /* ---- barra fija con los dos botones ---- */
+  .fbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 80;
+    display: flex; gap: 10px; padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
+    background: rgba(255, 255, 255, .94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+  }
+  .fbar .btn { flex: 1; height: 46px; justify-content: center; font-size: 14.5px; }
+  .fbar .icon { width: 17px; height: 17px; }
+  .fbar-n { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; margin-left: 2px; border-radius: 999px; background: var(--ink); color: #fff; font-family: var(--font-mono); font-size: 11px; font-weight: 700; }
+  .cat-page { padding-bottom: 84px; }   /* que la barra no tape la paginación */
+
+  /* ---- fondo oscuro ---- */
+  .fdim { display: block; position: fixed; inset: 0; z-index: 85; background: rgba(12, 12, 12, .45); opacity: 0; transition: opacity .22s; }
+  /* Sin esto el fondo gana al [hidden] del navegador (una clase pesa más que la hoja de agente de usuario)
+     y se queda encima de toda la página con opacidad 0: nada se podía tocar. 30 sep 2026 */
+  .fdim[hidden] { display: none; }
+  .fdim.is-on { opacity: 1; }
+
+  /* ---- la hoja ---- */
+  .filters {
+    position: fixed; left: 0; right: 0; bottom: 0; top: auto; z-index: 90;
+    display: flex; flex-direction: column; gap: 0;
+    max-height: 88vh; max-height: 88dvh;
+    padding: 0; background: #fff; border-radius: 18px 18px 0 0;
+    box-shadow: 0 -8px 30px rgba(12, 12, 12, .2);
+    transform: translateY(101%); visibility: hidden;
+    transition: transform .28s var(--ease-out), visibility .28s;
+  }
+  .filters.is-open { transform: none; visibility: visible; }
+
+  .fsheet-top { display: flex; align-items: center; gap: 12px; flex: none; padding: 14px 16px; border-bottom: 1px solid var(--line); }
+  .fsheet-top b { font-size: 16px; font-weight: 600; }
+  .fsheet-x { margin-left: auto; width: 34px; height: 34px; border-radius: 9px; border: 1px solid var(--line); background: #fff; font-size: 19px; line-height: 1; color: var(--ink-soft); cursor: pointer; }
+  .fsheet-body { display: block; flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 0 16px; }
+  .fsheet-foot { display: flex; gap: 10px; flex: none; padding: 12px 16px calc(12px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+  .fsheet-foot .btn { height: 46px; justify-content: center; }
+  .fsheet-foot [data-clear-all] { flex: 1; }
+  .fsheet-foot [data-fapply] { flex: 1.5; }
+
+  /* ---- grupos como acordeón ---- */
+  .fgroup { padding: 0; border-bottom: 1px solid var(--line); }
+  .fgroup:last-of-type { border-bottom: 0; }
+  .fgroup--sort { display: block; }        /* dentro de la hoja sí se muestra el orden */
+  .results-sort { display: none; }         /* y por eso se quita el selector espejo */
+  .fhead { margin-bottom: 0; }
+  .fhead-btn { display: flex; align-items: center; gap: 10px; padding: 15px 0; cursor: pointer; }
+  .fhead-btn::after { content: ''; margin-left: auto; width: 9px; height: 9px; border-right: 1.7px solid var(--muted); border-bottom: 1.7px solid var(--muted); transform: rotate(45deg) translate(-2px, -2px); transition: transform .2s; }
+  .fgroup.is-open > .fhead .fhead-btn::after { transform: rotate(-135deg) translate(-2px, -2px); }
+  .fgroup:has(.fhead-btn):not(.is-open) > :not(.fhead) { display: none; }
+  .fgroup:has(.fhead-btn).is-open > :not(.fhead):last-child { margin-bottom: 14px; }
+  .fcheck, .fswitch { padding-top: 9px; padding-bottom: 9px; font-size: 14.5px; }
+  .fclear { display: none; }               /* el pie de la hoja ya tiene "Limpiar" */
 }

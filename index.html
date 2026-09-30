@@ -10,8 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260928b">
-<link rel="stylesheet" href="assets/css/tienda.css?v=20260925d">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260930b">
+<link rel="stylesheet" href="assets/css/tienda.css?v=20260930a">
 </head>
 <body class="tienda">
 
@@ -24,6 +24,8 @@
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
     <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 3h2l2.5 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9.5" cy="20.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18" cy="20.5" r="1.2" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h14M4 12h9M4 17h5"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
@@ -70,7 +72,7 @@
     <form class="search" role="search" action="buscar.html" method="get">
       <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
       <input type="search" name="q" placeholder="Buscar productos…" aria-label="Buscar productos">
-      <select class="search-cat" aria-label="Categoría"><option>Todas las categorías</option><option>Serie DELTA</option><option>Serie RIVER</option><option>Paneles solares</option><option>Baterías extra</option><option>Inteligentes</option><option>ATESS</option><option>Accesorios</option></select>
+      <select class="search-cat" name="cat" aria-label="Categoría"><option value="">Todas las categorías</option><option>Serie DELTA</option><option>Serie RIVER</option><option>Paneles solares</option><option>Baterías extra</option><option>Inteligentes</option><option>ATESS</option><option>Accesorios</option></select>
       <kbd aria-hidden="true">/</kbd>
     </form>
 
@@ -124,10 +126,10 @@
             <aside class="mega-atess" aria-label="ATESS">
               <div class="mega-atess-head"><b>ATESS</b><span>Almacenamiento de energía para comercio e industria.</span></div>
               <a href="producto-atess-hps30000tl.html">Inversores híbridos <small>1</small></a>
-              <a href="#atess">Gabinetes de baterías <small>3</small></a>
-              <a href="#atess">Monitoreo <small>1</small></a>
+              <a href="categoria.html?marca=ATESS&linea=Gabinetes%20de%20bater%C3%ADas">Gabinetes de baterías <small>4</small></a>
+              <a href="categoria.html?marca=ATESS&linea=Distribuci%C3%B3n%20y%20monitoreo">Monitoreo <small>6</small></a>
               <figure class="mega-atess-fig"><img src="assets/img/productos/atess-hps30000tl.webp" alt="" loading="lazy"><figcaption>HPS30000TL · Inversor híbrido trifásico</figcaption></figure>
-              <a class="btn btn-outline btn-sm" href="#atess">Ver catálogo ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn btn-outline btn-sm" href="categoria.html?marca=ATESS">Ver catálogo ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </aside>
           </div>
         </li>
@@ -168,9 +170,9 @@
         </ul>
         <div class="cat-side-brand cat-side-brand--atess">ATESS</div>
         <ul class="cat-side-list--atess">
-        <li><a href="index.html#atess"><img src="assets/img/productos/atess-hps30000tl.webp" alt="" loading="lazy"><span>Inversores híbridos</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
-        <li><a href="index.html#atess"><img src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"><span>Gabinetes de baterías</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
-        <li><a href="index.html#atess"><img src="assets/img/productos/atess-mbms.webp" alt="" loading="lazy"><span>Monitoreo</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+        <li><a href="categoria.html?marca=ATESS&linea=Inversores%20h%C3%ADbridos"><img src="assets/img/productos/atess-hps30000tl.webp" alt="" loading="lazy"><span>Inversores híbridos</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+        <li><a href="categoria.html?marca=ATESS&linea=Gabinetes%20de%20bater%C3%ADas"><img src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"><span>Gabinetes de baterías</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
+        <li><a href="categoria.html?marca=ATESS&linea=Distribuci%C3%B3n%20y%20monitoreo"><img src="assets/img/productos/atess-mbms.webp" alt="" loading="lazy"><span>Monitoreo</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></a></li>
         </ul>
       </nav>
       <div class="banner" tabindex="0" aria-roledescription="carrusel" aria-label="Banners destacados">
@@ -306,7 +308,7 @@
       <a class="popcat reveal" href="categoria.html?serie=GLACIER"><div class="popcat-img"><img src="assets/img/productos/glacier-35l.webp" alt="" loading="lazy"></div><div class="popcat-name"><h3>GLACIER</h3><small>2 productos</small></div></a>
       <a class="popcat reveal" href="categoria.html?serie=Generadores"><div class="popcat-img"><img src="assets/img/productos/smart-dual-generador.webp" alt="" loading="lazy"></div><div class="popcat-name"><h3>Generador inteligente</h3><small>Smart Dual 4000</small></div></a>
       <a class="popcat reveal" href="categoria.html"><div class="popcat-img"><img src="assets/img/productos/cable-auto.webp" alt="" loading="lazy"></div><div class="popcat-name"><h3>Accesorios</h3></div></a>
-      <a class="popcat popcat--atess reveal" href="index.html#atess"><div class="popcat-img"><span class="popcat-brand">ATESS</span><img src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"></div><div class="popcat-name"><h3>ATESS</h3><small>5 productos</small></div></a>
+      <a class="popcat popcat--atess reveal" href="categoria.html?marca=ATESS"><div class="popcat-img"><span class="popcat-brand">ATESS</span><img src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"></div><div class="popcat-name"><h3>ATESS</h3><small>11 productos</small></div></a>
     </div>
   </section>
 
@@ -325,7 +327,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=RIVER%203%20Max">RIVER 3 Max · Estación portátil compacta con UPS y batería LFP</a></h3>
-              <div class="ptile-sku"><span>EFRIVER3MAX</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFRIVER3MAX" title="Copiar SKU">EFRIVER3MAX</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>63</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -334,7 +336,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="producto.html">DELTA 3 Plus · 1,024 Wh, 1,800 W y UPS de 10 ms</a></h3>
-              <div class="ptile-sku"><span>EFD3PLUS-LA</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3PLUS-LA" title="Copiar SKU">EFD3PLUS-LA</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>4</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -343,7 +345,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Delta%203">Delta 3 · 1,024 Wh y 1,800 W con carga completa en 56 minutos</a></h3>
-              <div class="ptile-sku"><span>EFD3-LA</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3-LA" title="Copiar SKU">EFD3-LA</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>143</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -352,7 +354,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Smart%20Dual%20Generador%204000">Smart Dual Generador 4000 · Gas LP o gasolina con arranque desde la app</a></h3>
-              <div class="ptile-sku"><span>ZDG200-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="ZDG200-US" title="Copiar SKU">ZDG200-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>41</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -361,7 +363,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Panel%20Solar%20220%20W">Panel Solar 220 W · Plegable bifacial con conector MC4</a></h3>
-              <div class="ptile-sku"><span>SOLAR220W</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="SOLAR220W" title="Copiar SKU">SOLAR220W</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>251</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -370,7 +372,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=RIVER%202%20Pro">RIVER 2 Pro · 768 Wh y 800 W para oficina y viaje</a></h3>
-              <div class="ptile-sku"><span>ZMR620-B-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="ZMR620-B-US" title="Copiar SKU">ZMR620-B-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>27</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -379,7 +381,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Trail%20200">Trail 200 · Estación ultraligera para exterior con salida DC y USB-C</a></h3>
-              <div class="ptile-sku"><span>EFTRAIL200</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFTRAIL200" title="Copiar SKU">EFTRAIL200</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>45</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -388,7 +390,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Panel%20Solar%20110%20W">Panel Solar 110 W · Plegable y portátil para la Serie RIVER</a></h3>
-              <div class="ptile-sku"><span>EFSOLAR110-N</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFSOLAR110-N" title="Copiar SKU">EFSOLAR110-N</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>5</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -410,7 +412,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=DELTA%203%201000%20Air">DELTA 3 1000 Air · La Serie 3 más ligera, con UPS para módem y cómputo</a></h3>
-              <div class="ptile-sku"><span>EFD3A-UPS-LA-1</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3A-UPS-LA-1" title="Copiar SKU">EFD3A-UPS-LA-1</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>86</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -419,7 +421,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Trail%20300%20Plus">Trail 300 Plus · Estación ultraligera para exterior con salida DC y USB-C</a></h3>
-              <div class="ptile-sku"><span>EFPOWERINSIGHT-US-1-2</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFPOWERINSIGHT-US-1-2" title="Copiar SKU">EFPOWERINSIGHT-US-1-2</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>88</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -428,7 +430,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=Panel%20Solar%20400%20W%20Ligero">Panel Solar 400 W Ligero · Nueva generación plegable para la Serie DELTA</a></h3>
-              <div class="ptile-sku"><span>EFSOLARLIGHT400W-P-D-XT-4</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFSOLARLIGHT400W-P-D-XT-4" title="Copiar SKU">EFSOLARLIGHT400W-P-D-XT-4</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>77</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -437,7 +439,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=DELTA%20Pro%20Ultra">DELTA Pro Ultra · Respaldo total para el hogar: 6 kWh ampliables a 90 kWh</a></h3>
-              <div class="ptile-sku"><span>DPUINV+BATT</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="DPUINV+BATT" title="Copiar SKU">DPUINV+BATT</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>94</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -446,7 +448,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=DELTA%20Pro">DELTA Pro · 3.6 kWh ampliables a 10.8 kWh con 3,600 W de salida CA</a></h3>
-              <div class="ptile-sku"><span>EFDELTAPRO-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFDELTAPRO-US" title="Copiar SKU">EFDELTAPRO-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>18</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -455,7 +457,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=RIVER%203%20UPS">RIVER 3 UPS · 245 Wh y 300 W con conmutación UPS menor a 10 ms</a></h3>
-              <div class="ptile-sku"><span>EFRIVER3UPS</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFRIVER3UPS" title="Copiar SKU">EFRIVER3UPS</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>176</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -464,7 +466,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=GLACIER%20Classic%2035L">GLACIER Classic 35L · Refrigerador congelador portátil con batería opcional</a></h3>
-              <div class="ptile-sku"><span>EFGLACIER35L-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFGLACIER35L-US" title="Copiar SKU">EFGLACIER35L-US</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>3</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -473,7 +475,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=GLACIER%20Bater%C3%ADa%20Extra">GLACIER Batería Extra · Hasta 40 horas de enfriamiento sin conexión</a></h3>
-              <div class="ptile-sku"><span>EFGLACIER35L-US-EB</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFGLACIER35L-US-EB" title="Copiar SKU">EFGLACIER35L-US-EB</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>16</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -482,7 +484,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="producto-delta-3-max.html">DELTA 3 Max · 2 kWh, 2,400 W y UPS de 10 ms</a></h3>
-              <div class="ptile-sku"><span>EFD3M-G-LA-CBOX</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3M-G-LA-CBOX" title="Copiar SKU">EFD3M-G-LA-CBOX</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>212</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -491,7 +493,7 @@
             <div class="ptile-body">
               <span class="ptile-brand">EcoFlow</span>
               <h3 class="ptile-name"><a href="categoria.html?q=RIVER%203%20Max%20Plus">RIVER 3 Max Plus · Compacta con UPS y batería LFP de larga vida</a></h3>
-              <div class="ptile-sku"><span>EFRIVER3MAXPLUS</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+              <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFRIVER3MAXPLUS" title="Copiar SKU">EFRIVER3MAXPLUS</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>120</span></div>
             </div>
             <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
           </article>
@@ -577,7 +579,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="producto-delta-3-max.html">DELTA 3 Max · Estación de energía portátil 2 kWh / 2,400 W / UPS 10 ms</a></h3>
-            <div class="ptile-sku"><span>EFD3M-G-LA-CBOX</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3M-G-LA-CBOX" title="Copiar SKU">EFD3M-G-LA-CBOX</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>212</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -586,7 +588,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=DELTA%20Pro%203">DELTA Pro 3 · 4 kWh / 4,000 W / ampliable a 12 kWh / entrada solar 2,600 W</a></h3>
-            <div class="ptile-sku"><span>EFDELTAPRO3-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFDELTAPRO3-US" title="Copiar SKU">EFDELTAPRO3-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>308</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -595,7 +597,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=RIVER%203%20Max">RIVER 3 Max · Estación portátil compacta con UPS / batería LFP</a></h3>
-            <div class="ptile-sku"><span>EFRIVER3MAX</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFRIVER3MAX" title="Copiar SKU">EFRIVER3MAX</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>63</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -604,7 +606,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="producto.html">DELTA 3 Plus · 1,024 Wh / 1,800 W / UPS 10 ms / carga completa en 56 min</a></h3>
-            <div class="ptile-sku"><span>EFD3PLUS-LA</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFD3PLUS-LA" title="Copiar SKU">EFD3PLUS-LA</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>4</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -613,7 +615,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=GLACIER%20Classic%2035L">GLACIER Classic 35L · Refrigerador congelador portátil / batería opcional</a></h3>
-            <div class="ptile-sku"><span>EFGLACIER35L US-NBOX</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFGLACIER35L US-NBOX" title="Copiar SKU">EFGLACIER35L US-NBOX</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>21</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -622,7 +624,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=Trail%20300%20Plus">Trail 300 Plus · Estación ultraligera para exterior / salida DC y USB-C</a></h3>
-            <div class="ptile-sku"><span>EFPOWERINSIGHT-US-1-2</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFPOWERINSIGHT-US-1-2" title="Copiar SKU">EFPOWERINSIGHT-US-1-2</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>88</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -631,7 +633,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=Smart%20Home%20Panel%202">Smart Home Panel 2 · Respaldo automático de circuitos / compatible con DELTA Pro 3 y Pro Ultra</a></h3>
-            <div class="ptile-sku"><span>EFSmartHomePanel2-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFSmartHomePanel2-US" title="Copiar SKU">EFSmartHomePanel2-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>29</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -640,7 +642,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=Panel%20Solar%20400%20W%20Ligero">Panel solar 400 W ligero · Plegable / nueva generación / conector MC4</a></h3>
-            <div class="ptile-sku"><span>EFSOLARLIGHT400W-P-D-XT-4</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="EFSOLARLIGHT400W-P-D-XT-4" title="Copiar SKU">EFSOLARLIGHT400W-P-D-XT-4</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>77</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -649,7 +651,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=DELTA%20Pro%20Ultra">DELTA Pro Ultra · Inversor 7,200 W + batería 6 kWh / ampliable hasta 90 kWh</a></h3>
-            <div class="ptile-sku"><span>DPUINV+BATT</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="DPUINV+BATT" title="Copiar SKU">DPUINV+BATT</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>94</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -658,7 +660,7 @@
           <div class="ptile-body">
             <span class="ptile-brand">EcoFlow</span>
             <h3 class="ptile-name"><a href="categoria.html?q=Smart%20Dual%20Generador%204000">Smart Dual Generador 4000 · Gas LP o gasolina / arranque automático desde la app</a></h3>
-            <div class="ptile-sku"><span>ZDG200-US</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="ZDG200-US" title="Copiar SKU">ZDG200-US</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>41</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -698,7 +700,7 @@
   <section class="container atess" id="atess">
     <div class="section-head">
       <h2 class="section-title">Almacenamiento comercial ATESS</h2>
-      <a class="btn btn-outline" href="#">Ver catálogo ATESS</a>
+      <a class="btn btn-outline" href="categoria.html?marca=ATESS">Ver catálogo ATESS</a>
     </div>
     <div class="rail tiles" aria-label="Productos ATESS">
       <div class="rail-track tiles-track no-scrollbar">
@@ -707,43 +709,43 @@
           <div class="ptile-body">
             <span class="ptile-brand">ATESS</span>
             <h3 class="ptile-name"><a href="producto-atess-hps30000tl.html">HPS30000TL-US-208 · Inversor híbrido trifásico todo en uno para comercio e industria</a></h3>
-            <div class="ptile-sku"><span>HPS30000TL-US-208</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="HPS30000TL-US-208" title="Copiar SKU">HPS30000TL-US-208</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>3</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
         <article class="ptile">
-          <a class="ptile-media" href="#" aria-label="ATESS BC55RPB"><img class="ptile-cut" src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"></a>
+          <a class="ptile-media" href="categoria.html?q=Master%20Cabinet%20BC55RPB" aria-label="ATESS BC55RPB"><img class="ptile-cut" src="assets/img/productos/atess-cabinet-bc55rpb.webp" alt="" loading="lazy"></a>
           <div class="ptile-body">
             <span class="ptile-brand">ATESS</span>
-            <h3 class="ptile-name"><a href="#">Cabinet BC55RPB · Armario de baterías para exterior IP54 con BMS integrado</a></h3>
-            <div class="ptile-sku"><span>BC55RPB</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <h3 class="ptile-name"><a href="categoria.html?q=Master%20Cabinet%20BC55RPB">Cabinet BC55RPB · Armario de baterías para exterior IP54 con BMS integrado</a></h3>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="BC55RPB" title="Copiar SKU">BC55RPB</button><span class="ptile-stock ptile-stock--bajo" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>5</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
         <article class="ptile">
-          <a class="ptile-media" href="#" aria-label="ATESS BR55RPB"><img class="ptile-cut" src="assets/img/productos/atess-slave-bc55rpb.webp" alt="" loading="lazy"></a>
+          <a class="ptile-media" href="categoria.html?q=Slave%20Battery%20Rack%20BR55RPB" aria-label="ATESS BR55RPB"><img class="ptile-cut" src="assets/img/productos/atess-slave-bc55rpb.webp" alt="" loading="lazy"></a>
           <div class="ptile-body">
             <span class="ptile-brand">ATESS</span>
-            <h3 class="ptile-name"><a href="#">Slave rack BR55RPB · Gabinete de baterías para interior con BMS</a></h3>
-            <div class="ptile-sku"><span>BR55RPB</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <h3 class="ptile-name"><a href="categoria.html?q=Slave%20Battery%20Rack%20BR55RPB">Slave rack BR55RPB · Gabinete de baterías para interior con BMS</a></h3>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="BR55RPB" title="Copiar SKU">BR55RPB</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>7</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
         <article class="ptile">
-          <a class="ptile-media" href="#" aria-label="ATESS ESS-BM-51.2-100RPB"><img class="ptile-cut" src="assets/img/productos/atess-ess-bm-100rpb.webp" alt="" loading="lazy"></a>
+          <a class="ptile-media" href="categoria.html?q=ESS-BM-51.2-100RPB-A" aria-label="ATESS ESS-BM-51.2-100RPB"><img class="ptile-cut" src="assets/img/productos/atess-ess-bm-100rpb.webp" alt="" loading="lazy"></a>
           <div class="ptile-body">
             <span class="ptile-brand">ATESS</span>
-            <h3 class="ptile-name"><a href="#">ESS-BM-51.2-100RPB · Módulo de batería de ion-litio para sistemas ESS</a></h3>
-            <div class="ptile-sku"><span>ESS-BM-51.2-100RPB</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <h3 class="ptile-name"><a href="categoria.html?q=ESS-BM-51.2-100RPB-A">ESS-BM-51.2-100RPB · Módulo de batería de ion-litio para sistemas ESS</a></h3>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="ESS-BM-51.2-100RPB" title="Copiar SKU">ESS-BM-51.2-100RPB</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>12</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
         <article class="ptile">
-          <a class="ptile-media" href="#" aria-label="ATESS MBMS-KIT"><img class="ptile-cut" src="assets/img/productos/atess-mbms.webp" alt="" loading="lazy"></a>
+          <a class="ptile-media" href="categoria.html?q=MBMS%20con%20pantalla" aria-label="ATESS MBMS-KIT"><img class="ptile-cut" src="assets/img/productos/atess-mbms.webp" alt="" loading="lazy"></a>
           <div class="ptile-body">
             <span class="ptile-brand">ATESS</span>
-            <h3 class="ptile-name"><a href="#">MBMS con pantalla · Caja de distribución con BMS maestro y monitoreo</a></h3>
-            <div class="ptile-sku"><span>MBMS-KIT</span><svg class="icon" aria-hidden="true"><use href="#i-copy"/></svg></div>
+            <h3 class="ptile-name"><a href="categoria.html?q=MBMS%20con%20pantalla">MBMS con pantalla · Caja de distribución con BMS maestro y monitoreo</a></h3>
+            <div class="ptile-sku"><button class="ptile-copy" type="button" data-copiar="MBMS-KIT" title="Copiar SKU">MBMS-KIT</button><span class="ptile-stock" title="Piezas disponibles"><svg class="icon" aria-hidden="true"><use href="#i-box"/></svg>8</span></div>
           </div>
           <a class="btn-account" href="login.html"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg>Ver precio distribuidor</a>
         </article>
@@ -933,7 +935,7 @@
         <div class="brand-logo"><img src="assets/logos/Logo_HypershellPWM_W_trim.png" alt="Hypershell"></div>
         <span class="more">Ver Hypershell<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
       </a>
-      <a class="brand-tile reveal" href="#atess" aria-label="ATESS">
+      <a class="brand-tile reveal" href="categoria.html?marca=ATESS" aria-label="ATESS">
         <img class="brand-bg" src="assets/img/marcas/atess.webp" alt="" loading="lazy">
         <div class="brand-logo brand-logo--mono"><img src="assets/logos/ATESS-logo-1.webp" alt="ATESS"></div>
         <span class="more">Ver ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></span>
@@ -1048,7 +1050,7 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20260917b"></script>
+<script src="assets/js/main.js?v=20260928d"></script>
 <script>
 (function () {
   var banner = document.querySelector('.banner'), nav = document.querySelector('.hero-nav'); if (!banner || !nav) return;

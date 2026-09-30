@@ -153,6 +153,11 @@
   .step { padding: 10px 12px; }
 }
 @media (max-width: 767px) {
+  /* El badge medía 361 px dentro de un hero de 328 y se cortaba por la izquierda: ahora ocupa el ancho
+     disponible, se centra y el texto puede pasar a dos renglones (30 sep 2026). */
+  .terms-hero .intro-badge { left: 16px; right: 16px; justify-content: center; padding: 8px 14px; }
+  .intro-badge span { white-space: normal; text-align: center; letter-spacing: .1em; font-size: 10.5px; padding-left: 10px; }
+  .intro-badge img { height: 18px; }
   .fgrid, .choice, .done-steps { grid-template-columns: 1fr; }
   .form-actions { flex-direction: column-reverse; align-items: stretch; }
   .form-actions .btn { justify-content: center; }

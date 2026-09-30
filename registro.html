@@ -10,10 +10,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260928b">
-<link rel="stylesheet" href="assets/css/tienda.css?v=20260925d">
-<link rel="stylesheet" href="assets/css/paginas.css?v=20260923p">
-<link rel="stylesheet" href="assets/css/registro.css?v=20260923p">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260930b">
+<link rel="stylesheet" href="assets/css/tienda.css?v=20260930a">
+<link rel="stylesheet" href="assets/css/paginas.css?v=20260930a">
+<link rel="stylesheet" href="assets/css/registro.css?v=20260930a">
 </head>
 <body class="tienda">
 
@@ -26,6 +26,8 @@
     <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
     <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 3h2l2.5 12.5a2 2 0 0 0 2 1.5h8.6a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9.5" cy="20.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18" cy="20.5" r="1.2" fill="currentColor" stroke="none"/></symbol>
     <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></symbol>
+    <symbol id="i-sort" viewBox="0 0 24 24"><path d="M4 7h14M4 12h9M4 17h5"/></symbol>
     <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></symbol>
@@ -72,7 +74,7 @@
     <form class="search" role="search" action="buscar.html" method="get">
       <svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>
       <input type="search" name="q" placeholder="Buscar productos…" aria-label="Buscar productos">
-      <select class="search-cat" aria-label="Categoría"><option>Todas las categorías</option><option>Serie DELTA</option><option>Serie RIVER</option><option>Paneles solares</option><option>Baterías extra</option><option>Inteligentes</option><option>ATESS</option><option>Accesorios</option></select>
+      <select class="search-cat" name="cat" aria-label="Categoría"><option value="">Todas las categorías</option><option>Serie DELTA</option><option>Serie RIVER</option><option>Paneles solares</option><option>Baterías extra</option><option>Inteligentes</option><option>ATESS</option><option>Accesorios</option></select>
       <kbd aria-hidden="true">/</kbd>
     </form>
 
@@ -126,10 +128,10 @@
             <aside class="mega-atess" aria-label="ATESS">
               <div class="mega-atess-head"><b>ATESS</b><span>Almacenamiento de energía para comercio e industria.</span></div>
               <a href="producto-atess-hps30000tl.html">Inversores híbridos <small>1</small></a>
-              <a href="index.html#atess">Gabinetes de baterías <small>3</small></a>
-              <a href="index.html#atess">Monitoreo <small>1</small></a>
+              <a href="categoria.html?marca=ATESS&linea=Gabinetes%20de%20bater%C3%ADas">Gabinetes de baterías <small>4</small></a>
+              <a href="categoria.html?marca=ATESS&linea=Distribuci%C3%B3n%20y%20monitoreo">Monitoreo <small>6</small></a>
               <figure class="mega-atess-fig"><img src="assets/img/productos/atess-hps30000tl.webp" alt="" loading="lazy"><figcaption>HPS30000TL · Inversor híbrido trifásico</figcaption></figure>
-              <a class="btn btn-outline btn-sm" href="index.html#atess">Ver catálogo ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+              <a class="btn btn-outline btn-sm" href="categoria.html?marca=ATESS">Ver catálogo ATESS<svg class="icon" aria-hidden="true"><use href="#i-arrow"/></svg></a>
             </aside>
           </div>
         </li>
@@ -497,8 +499,8 @@
   </div>
 </footer>
 
-<script src="assets/js/main.js?v=20260917b"></script>
-<script src="assets/js/registro.js?v=20260923p"></script>
+<script src="assets/js/main.js?v=20260928d"></script>
+<script src="assets/js/registro.js?v=20260930a"></script>
 <script>
 (function () {
   var banner = document.querySelector('.banner'), nav = document.querySelector('.hero-nav'); if (!banner || !nav) return;

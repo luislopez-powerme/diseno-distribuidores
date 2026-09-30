@@ -355,7 +355,10 @@ strong, b { font-weight: 600; }
 .arrow .icon { width: 16px; height: 16px; }
 .arrow--prev .icon { transform: rotate(180deg); }
 .dots { position: absolute; left: 0; right: 0; bottom: 10px; z-index: 3; display: flex; justify-content: center; gap: 6px; }
-.dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: .3s; padding: 0; }
+.dot { position: relative; width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, .35); transition: .3s; padding: 0; }
+/* El punto mide 6 px: se le da un área de toque mayor con un pseudo-elemento, sin cambiar el dibujo. El ancho
+   (20 px) es menor que la separación entre puntos para que las áreas no se encimen (30 sep 2026). */
+.dot::after { content: ''; position: absolute; left: 50%; top: 50%; width: 20px; height: 40px; transform: translate(-50%, -50%); }
 .dot.is-active { background: var(--cyan); width: 18px; border-radius: 3px; }
 
 /* Novedades (Newsfeed): tarjeta con borde, cabecera 37px, lista con scroll.
@@ -721,6 +724,12 @@ body.has-modal { overflow: hidden; }
   .candy-col:last-child { border-bottom: 0; }
 }
 @media (max-width: 767px) {
+  .dots { gap: 14px; }   /* separa los puntos para que las áreas de toque no se encimen (30 sep 2026) */
+  /* Safari en iPhone hace zoom automático al enfocar un campo de menos de 16 px y deja la página ampliada.
+     Todos los campos del portal estaban entre 13.5 y 15 px, así que en móvil suben a 16. El :not() da la
+     especificidad necesaria para ganarle a las reglas de clase de cada hoja de página. 30 sep 2026 */
+  input:not([type="checkbox"]):not([type="radio"]), select:not([size]), textarea:not([disabled]) { font-size: 16px; }
+
   .sw-title h2 { font-size: 26px; padding: 0 16px; }
   .popcats { grid-template-columns: repeat(3, 1fr); gap: 12px; }
   .popcat-img { height: 110px; max-height: none; }
@@ -777,8 +786,40 @@ body.has-modal { overflow: hidden; }
 .ptile-name a { color: inherit; }
 .ptile-name a:hover { text-decoration: none; color: var(--ink-soft); }
 .ptile-sku { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--ink-soft); }
-.ptile-sku span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ptile-sku .icon { flex: none; width: 14px; height: 14px; color: var(--muted-2); }
+
+/* ---------- Existencias en la tarjeta (28 sep 2026) ----------
+   Anatomía de syscom.mx: píldora compacta con icono de caja y la cantidad
+   exacta. Decisiones de Luis: número exacto siempre, un solo total (no por
+   almacén) y visible SOLO con sesión iniciada — igual que el precio.
+   Por eso vive en el HTML pero oculta; el modo ?sesion=1 la revela, y en
+   Shopify será la misma condición {% if customer %} que gatea el precio. */
+.ptile-stock { display: none; }
+body.sesion .ptile-stock {
+  display: inline-flex; align-items: center; gap: 5px; flex: none;
+  padding: 2px 9px 2px 6px; border-radius: 999px;
+  background: var(--paper-3); font-family: var(--font-mono); font-size: 12px;
+  font-weight: 600; line-height: 1.5; color: var(--ink-soft);
+}
+body.sesion .ptile-stock .icon { width: 13px; height: 13px; color: var(--muted-2); stroke-width: 2; }
+/* 5 piezas o menos: el distribuidor tiene que notarlo antes de prometer una entrega */
+body.sesion .ptile-stock--bajo { background: #FCF2F2; color: #B91012; }
+body.sesion .ptile-stock--bajo .icon { color: #B91012; }
+
+/* Aviso de que la página está en vista previa con sesión */
+.sesion-bar { display: none; }
+body.sesion .sesion-bar {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 7px 16px; background: var(--ink); color: #fff; font-size: 12.5px;
+}
+body.sesion .sesion-bar a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+body.sesion .sesion-bar .icon { width: 14px; height: 14px; }
+/* El SKU es un botón: al hacer clic se copia (28 sep). Se ve como texto plano. */
+.ptile-copy { flex: 1 1 auto; min-width: 0; padding: 0; margin: 0; border: 0; background: none;
+  font: inherit; color: inherit; text-align: left; cursor: pointer;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; transition: color .2s; }
+.ptile-copy:hover { color: var(--ink); text-decoration: underline dotted; text-underline-offset: 3px; }
+.ptile-copy:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-radius: 3px; }
+.ptile-copy.copiado { color: var(--ok); text-decoration: none; }
 .ptile .btn-account { padding: 10px 10px; font-size: 12.5px; white-space: nowrap; }
 @media (max-width: 1200px) { .ptile, .products-rail .ptile { flex-basis: calc(25% - 24px); } }
 @media (max-width: 1024px) { .ptile, .products-rail .ptile { flex-basis: calc(40% - 10px); } .ptile-media { height: 150px; } }
@@ -930,7 +971,9 @@ body.has-modal { overflow: hidden; }
   .events-card { height: 320px; }
   .event { grid-template-columns: 1fr; gap: 6px; padding: 12px 16px; }
   .event-type { text-align: left; }
-  .section-head { align-items: flex-start; }
+  /* El botón de la derecha lleva white-space:nowrap y no cabe junto al título en pantallas angostas
+     (a 360 px el de 'Ver catálogo ATESS' se salía 16 px): en móvil baja a su propio renglón. 30 sep 2026 */
+  .section-head { align-items: flex-start; flex-wrap: wrap; }
   .footer-top { grid-template-columns: 1fr; }
   .footer-bottom { grid-template-columns: 1fr; grid-template-areas: "partner" "pay" "copy" "legal"; row-gap: 16px; }
   .footer-bottom nav, .footer-bottom .pay-row { justify-self: start; }
